@@ -46,18 +46,21 @@
                     @endguest
 
                     @auth
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                                <span class="text-dark">Selamat Datang,</span> {{ Auth::user()->name }}</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="" class="dropdown-item">Edit</a>
-                                <a href="" class="dropdown-item">History Orders</a>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                        <button type="submit" class="dropdown-item">
+                        <div class="navbar-nav ml-auto" style="margin-right: 2rem;">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-dark">Selamat Datang,</span> {{ Auth::user()->name }}</a>
+                                </a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="" class="dropdown-item">Edit</a>
+                                    <a href="" class="dropdown-item">History Orders</a>
+                                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item btn-logout">
                                             <i class="fas fa-fw fa-sign-out-alt"></i> Logout
                                         </button>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     @endauth

@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Data\VespaController;
 use App\Http\Controllers\Data\GaleriController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Data\KaryawanController;
 use App\Http\Controllers\Data\DashboardController;
+use App\Http\Controllers\Data\CategroriesController;
 use App\Http\Controllers\Data\ManageKaryawanController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,8 @@ Route::get('/', function () {
 Route::get('/admin/manage_dashboard', [DashboardController::class, 'index'])->middleware('admin');
 Route::name('admin.')->prefix('manage_dashboard')->middleware(['admin'])->group(function() {
     Route::resource('manage_karyawan', ManageKaryawanController::class);
-    Route::resource('vespa', KaryawanController::class);
+    Route::resource('kategori', CategroriesController::class);
+    Route::resource('vespa', VespaController::class);
 });
 
 // Routes Karyawan Dashboard Data
