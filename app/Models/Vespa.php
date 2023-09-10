@@ -6,12 +6,17 @@ use App\Models\Categories;
 use App\Models\Specifications;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Vespa extends Model
 {
     use HasFactory, Uuid;
     protected $guarded = ['id'];
     protected $table = 'products_vespa';
+
+    protected $casts = [
+        'photo_product' => 'array'
+    ];
 
     public function category()
     {

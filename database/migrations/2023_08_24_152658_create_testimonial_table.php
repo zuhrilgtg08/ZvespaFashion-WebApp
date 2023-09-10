@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('product_id');
+            $table->unique(['user_id', 'product_id']);
             $table->float('rate');
             $table->string('content');
             $table->timestamps();

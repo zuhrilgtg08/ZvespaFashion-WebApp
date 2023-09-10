@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nomor_seri')->unique();
             $table->integer('launch_year');
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('photo_product')->nullable();
+            $table->longText('photo_product')->nullable();
             $table->string('thumbnail')->nullable();
             $table->integer('harga_product');
             $table->string('excerpt');

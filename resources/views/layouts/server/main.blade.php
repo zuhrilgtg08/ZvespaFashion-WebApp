@@ -10,8 +10,17 @@
         <link href="{{ asset('assets/dashboard/css/fontFamilyNunito.css') }}" rel="stylesheet"/>
         <!-- Custom styles for this template-->
         <link href="{{ asset('assets/dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet"/>
+        <!-- Trix css-->
+        <link href="{{ asset('assets/dashboard/css/trix.css') }}" rel="stylesheet"/>
         <!-- Favicon -->
         <link href="{{ asset('assets/customer/img/vespa-icon.png') }}" rel="icon" />
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
         @stack('style')
     </head>
 
@@ -25,6 +34,7 @@
 
                     <div class="container-fluid">
                         @yield('main-content')
+                        @include('sweetalert::alert')
                     </div>
                 </div>
                     @include('layouts.server.partials.footer')
@@ -36,15 +46,16 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+        <!-- Jquery 3.6.0-->
+        <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/jquery/jquery-3.6.0.min.js') }}"></script>
         <!-- Bootstrap core JavaScript-->
-        {{-- <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/jquery/jquery-3.6.0.min.js') }}"></script> --}}
-        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        
         <script src="{{ asset('assets/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core plugin JavaScript-->
         <script src="{{ asset('assets/dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <!-- Custom scripts for all pages-->
         <script src="{{ asset('assets/dashboard/js/sb-admin-2.min.js') }}"></script>
+        <!-- TrixJs-->
+        <script src="{{ asset('assets/dashboard/js/trix.js') }}"></script>
         @stack('script')
     </body>
 </html>

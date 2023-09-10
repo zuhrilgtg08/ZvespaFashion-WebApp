@@ -14,8 +14,8 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-hover data-table" id="tes" width="100%" cellspacing="0">
-                    <thead>
+                <table class="table table-striped table-hover data-table" id="view-table" width="100%" cellspacing="0">
+                    <thead class="bg-dark text-white">
                         <tr>
                             <th>#</th>
                             <th>Nama Kategori</th>
@@ -34,14 +34,14 @@
     <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var datatable = $('#tes').DataTable({
+            var datatable = $('#view-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ordering: true,
                 ajax: "{{ route('admin.kategori.index') }}",
                 columns: [{
-                        data: 'id',
-                        name: 'id',
+                        data: 'DT_RowIndex', 
+                        name: 'DT_RowIndex',
                     },
                     {
                         data: 'name_category',
@@ -56,7 +56,9 @@
                         name: 'action',
                         orderable: false,
                         searcable: false,
+                        targets: 0,
                     }],
+                order: [[1, 'asc']],
             });
         })
     </script>

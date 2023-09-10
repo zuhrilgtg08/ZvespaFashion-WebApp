@@ -70,13 +70,13 @@
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.kategori' ? 'active' : '' }}"
                                 href="{{ route('admin.kategori.index') }}">Kategori</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.vespa' ? 'active' : '' }}"
-                                href="">Vespa</a>
+                                href="{{ route('admin.vespa.index') }}">Vespa</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.karyawan' ? 'active' : '' }}"
-                                href="">Karyawan</a>
+                                href="{{ route('admin.manage_karyawan.index') }}">Karyawan</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.testimoni' ? 'active' : '' }}"
-                                href="">Testimonial</a>
+                                href="{{ route('admin.testimoni.index') }}">Testimonial</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.spesifikasi' ? 'active' : '' }}"
-                                href="">Spesifikasi</a>
+                                href="{{ route('admin.spesifikasi.index') }}">Spesifikasi</a>
                         </div>
                     </div>
                 </li>

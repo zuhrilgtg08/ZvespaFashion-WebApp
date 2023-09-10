@@ -8,8 +8,11 @@ use App\Http\Controllers\Data\GaleriController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Data\KaryawanController;
 use App\Http\Controllers\Data\DashboardController;
-use App\Http\Controllers\Data\CategroriesController;
+use App\Http\Controllers\Data\CategoriesController;
+use App\Http\Controllers\Data\TestimonialController;
+use App\Http\Controllers\Data\SpecificationController;
 use App\Http\Controllers\Data\ManageKaryawanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,11 +31,15 @@ Route::get('/', function () {
 
 // Routes Admin Dashboard Data
 Route::get('/admin/manage_dashboard', [DashboardController::class, 'index'])->middleware('admin');
-Route::name('admin.')->prefix('manage_dashboard')->middleware(['admin'])->group(function() {
+Route::name('admin.')->prefix('manage_dashboard')->middleware('admin')->group(function() {
     Route::resource('manage_karyawan', ManageKaryawanController::class);
-    Route::resource('kategori', CategroriesController::class);
+    Route::resource('kategori', CategoriesController::class);
     Route::resource('vespa', VespaController::class);
+    Route::resource('spesifikasi', SpecificationController::class);
+    Route::get('/source/testimoni', [TestimonialController::class, 'index'])->name('testimoni.index');
+    Route::get('/source/testimoni/detail/{products_vespa:id}', [TestimonialController::class, 'detail'])->name('testimoni.detail');
 });
+Route::get('/admin/manage_dashboard/kategori/checkSlug', [CategoriesController::class, 'checkSlug'])->middleware('admin');
 
 // Routes Karyawan Dashboard Data
 Route::get('/karyawan/manage_data', [KaryawanController::class, 'index'])->middleware('karyawan');

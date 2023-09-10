@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('specifications', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignId('product_id');
+            $table->foreignId('product_id')->references('id')->on('products_vespa')->onDelete('cascade');
             $table->string('engine');
             $table->string('displacement');
             $table->string('max_power');
