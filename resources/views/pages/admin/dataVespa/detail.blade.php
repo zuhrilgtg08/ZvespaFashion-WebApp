@@ -1,38 +1,91 @@
 @extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.vespa'])
+
+@push('style')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/vendor/swiper/swiper-bundle.min.css') }}"/>
+    <style>
+        .swiper-button-next, .swiper-button-prev {
+            color: #fff;
+        }
+    </style>
+@endpush
+
 @section('main-content')
     <a class="btn btn-dark" href="{{ route('admin.vespa.index') }}">
         <i class="fas fa-fw fa-arrow-left"></i>
         Back
     </a>
-    <h3 class="mt-4 text-gray-800">Detail Produk Vespa</h3>
+    <h3 class="my-4 text-gray-900">Detail Produk Vespa - ({{ $row->name_product }})</h3>
 
-    <div class="row justify-content-between mb-3">
-        <div class="col-md-6">
-            <div class="card border-0 shadow-lg">
-                <div class="row">
-                    <div class="col-md text-center shadow-inner m-auto">
-                        @if ($row->thumbnail)
-                            <img src="{{ asset('storage/' . $row->thumbnail) }}" alt="thumbnail" class="img-fluid rounded"
-                                style="width: 100%; height: 100%; object-fit: cover;" />
-                        @else
-                            <img src="{{ asset('assets/dashboard/img/404.svg') }}" alt="thumbnail" class="img-fluid rounded"
-                                style="width: 100%; height: 100%; object-fit: cover;" />
-                        @endif
-                    </div>
+    <div class="row justify-content-center mb-3">
+        <div class="col-xl-6 col-md-6">
+            @if ($row->thumbnail)
+                <img src="{{ asset('storage/' . $row->thumbnail) }}" alt="thumbnail" class="card-img-top rounded"
+                    style="width: 100%; height: 100%; object-fit: cover;"/>
+            @else
+                <img src="{{ asset('assets/dashboard/img/404.png') }}" alt="thumbnail" class="card-img-top rounded"
+                    style="width: 100%; height: 100%; object-fit: cover;"/>
+            @endif
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <div class="swiper my-swiper">
+                <div class="swiper-wrapper">
+                    @if ($row->photo_product)
+                        @foreach ($row->photo_product as $item)
+                            <div class="swiper-slide">
+                                <img src="{{ asset('storage/' . $item) }}" alt="photo" class="card-img-top rounded"
+                                    style="width: 100%; height: 100%; object-fit: cover;"/>
+                            </div>
+                        @endforeach
+                    @else
+                        <img src="{{ asset('assets/dashboard/img/404.png') }}" alt="photo" class="card-img-top rounded"
+                            style="width: 100%; height: 100%; object-fit: cover;"/>
+                    @endif
                 </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card border-0 shadow-lg" style="max-width: 600px;">
-                <div class="card-title bg-dark text-center">
-                    <h5 class="text-light font-semibold my-3">{{ $row->name_product }}</h5>
+        <div class="col-xl-12 col-md-12 my-4">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-md-5">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <h6 class="font-weight-bold card-text text-gray-900">Kode : <span class="text-danger">{{ $row->uuid }}</span></h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Stok Produk : <span class="text-danger">{{ $row->stock_product }} Produk</span></h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Nomor Seri : <span class="text-success">{{ $row->nomor_seri }}</span></h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Dibuat Tahun : {{ $row->launch_year }}</h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Kategori : <span class="text-primary">{{ $row->category->name_category }}</span></h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Harga Produk : <span class="text-primary">@currency($row->harga_product)</span></h6>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="lead">
-                       
-                    </p>
+                <div class="col-xl-7 col-md-7">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <h6 class="card-text text-gray-900">
+                                {!! $row->detail_product !!}
+                            </h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script src="{{ asset('assets/dashboard/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script>
+        var swiper = new Swiper(".my-swiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            loop: true,
+            autoplay: {
+                delay:5000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
+@endpush

@@ -36,10 +36,15 @@ Route::name('admin.')->prefix('manage_dashboard')->middleware('admin')->group(fu
     Route::resource('kategori', CategoriesController::class);
     Route::resource('vespa', VespaController::class);
     Route::resource('spesifikasi', SpecificationController::class);
+    Route::get('/setting/account/{users:email}', [DashboardController::class, 'setting'])->name('setting');
+    Route::put('/setting/account/update/{id}', [DashboardController::class, 'updateData'])->name('setting.update');
+    Route::put('/setting/account/updatePassword/{id}', [DashboardController::class, 'updatePassword'])->name('update.password');
     Route::get('/source/testimoni', [TestimonialController::class, 'index'])->name('testimoni.index');
-    Route::get('/source/testimoni/detail/{products_vespa:id}', [TestimonialController::class, 'detail'])->name('testimoni.detail');
+    Route::get('/source/testimoni/detail/{uuid}', [TestimonialController::class, 'detail'])->name('testimoni.detail');
+    Route::delete('/source/testimoni/destroy/{testimonial:id}', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
 });
 Route::get('/admin/manage_dashboard/kategori/checkSlug', [CategoriesController::class, 'checkSlug'])->middleware('admin');
+Route::get('/admin/manage_dashboard/city/{id}', [ManageKaryawanController::class, 'chooseCity'])->middleware('admin');
 
 // Routes Karyawan Dashboard Data
 Route::get('/karyawan/manage_data', [KaryawanController::class, 'index'])->middleware('karyawan');

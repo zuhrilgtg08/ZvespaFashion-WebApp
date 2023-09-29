@@ -120,9 +120,9 @@
                                        <select class="custom-select" name="category_id" id="kategori">
                                         <option selected disabled>Pilih Kategori</option>
                                         @foreach ($kategori as $item)
-                                            <option value="{{ isset($row->id) ? $row->category_id : $item->id }}"
+                                            <option value="{{ $item->id }}"
                                                 {{ isset($row->id) && $row->category_id == $item->id ? 'selected' : ''}}>
-                                                    {{ isset($row->id) ? $row->category->name_category : $item->name_category }}
+                                                {{ $item->name_category }}
                                             </option>
                                         @endforeach
                                     </select>

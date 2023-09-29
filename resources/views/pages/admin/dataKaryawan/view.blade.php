@@ -1,15 +1,15 @@
-@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.spesifikasi'])
+@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.karyawan'])
 
 @push('style')
     <link href="{{ asset('assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">List Data Spesifikasi Vespa</h1>
+    <h1 class="h3 mb-4 text-gray-800">List Data Karyawan</h1>
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <a href="{{ route('admin.spesifikasi.create') }}" class="m-0 font-weight-bold btn btn-success">
-                <i class="fas fa-fw fa-plus-circle"></i> Buat Spesifikasi
+            <a href="{{ route('admin.manage_karyawan.create') }}" class="m-0 font-weight-bold btn btn-success">
+                <i class="fas fa-fw fa-plus-circle"></i> Tambah Data
             </a>
         </div>
         <div class="card-body">
@@ -18,10 +18,10 @@
                     <thead class="bg-dark text-white">
                         <tr>
                             <th>#</th>
-                            <th>Code</th>
-                            <th>Jenis</th>
-                            <th>Harga</th>
-                            <th>Egine</th>
+                            <th>Nama</th>
+                            <th>Avatar</th>
+                            <th>Email</th>
+                            <th>Job</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,26 +40,29 @@
                     processing: true,
                     serverSide: true,
                     ordering: true,
-                    ajax: "{{ route('admin.spesifikasi.index') }}",
+                    ajax: "{{ route('admin.manage_karyawan.index') }}",
                     columns: [{
                             data: 'DT_RowIndex', 
                             name: 'DT_RowIndex',
                         },
                         {
-                            data: 'code',
-                            name: 'code',
+                            data: 'name',
+                            name: 'name',
                         },
                         {
-                            data: 'nama_vespa',
-                            name: 'nama_vespa',
+                            name: "profile_image",
+                            data: "profile_image",
+                            render: function( data, type, full, meta ) {
+                                return '<img src=\'' + data + '\' class=\'rounded-circle\' width=\'50px\' height=\'50px\' style=\'border-radius: 50%\' alt=\'img-profile\'/>';
+                            }
                         },
                         {
-                            data: 'harga_vespa',
-                            name: 'harga_vespa',
+                            data: 'email',
+                            name: 'email',
                         },
                         {
-                            data: 'engine',
-                            name: 'engine',
+                            data: 'job',
+                            name: 'job',
                         },                        
                         {
                             data: 'action',

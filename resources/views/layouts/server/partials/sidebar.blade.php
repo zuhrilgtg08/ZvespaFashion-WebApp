@@ -1,6 +1,6 @@
 <!-- Sidebar -->
     <ul class="navbar-nav {{ (auth()->user()->roles_type === 1) ? 'bg-gradient-primary' : 'bg-purple' }} sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/manage_dashboard">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-fw fa-digital-tachograph"></i>
             </div>

@@ -5,7 +5,6 @@ use App\Models\Vespa;
 use App\Models\Categories;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Specifications;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -188,10 +187,7 @@ class VespaController extends Controller
 
         if($data->thumbnail && $data->photo_product) {
             Storage::delete($data->thumbnail);
-
-            foreach($data->photo_product as $row) {
-                Storage::delete($row);
-            }
+            Storage::delete($data->photo_product);
         }
 
         $data->destroy($id);

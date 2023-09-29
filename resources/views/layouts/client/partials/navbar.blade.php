@@ -29,7 +29,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="" class="nav-item nav-link">Home</a>
+                        <a href="/home" class="nav-item nav-link {{ Request::is('home') ? 'active' : '' }}">Home</a>
                         <a href="" class="nav-item nav-link">About</a>
                         <a href="" class="nav-item nav-link">Visi & Misi</a>
                         <a href="" class="nav-item nav-link">Popular</a>
@@ -52,8 +52,16 @@
                                     <span class="text-dark">Selamat Datang,</span> {{ Auth::user()->name }}</a>
                                 </a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="" class="dropdown-item">Edit</a>
-                                    <a href="" class="dropdown-item">History Orders</a>
+                                    @if(auth()->user()->roles_type == 1)
+                                        @can('admin')
+                                            <a href="/admin/manage_dashboard" class="dropdown-item">
+                                                <i class="fas fa-fw fa-database"></i> Back to Dashboard
+                                            </a>
+                                        @endcan
+                                    @else
+                                        <a href="" class="dropdown-item">Edit</a>
+                                        <a href="" class="dropdown-item">History Orders</a>
+                                    @endif
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="dropdown-item btn-logout">
@@ -81,7 +89,7 @@
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">
                                         Fashionable Dress
                                     </h3>
-                                    <a href="" class="btn btn-success rounded-pill py-2 px-3">Shop Now</a>
+                                    <a href="" class="btn btn-success rounded py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>

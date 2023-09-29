@@ -1,27 +1,22 @@
-@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.spesifikasi'])
+@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.testimoni'])
 
 @push('style')
     <link href="{{ asset('assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">List Data Spesifikasi Vespa</h1>
+    <h1 class="h3 mb-4 text-gray-800">List Data Testimoni Vespa</h1>
     <div class="card shadow my-4">
-        <div class="card-header py-3">
-            <a href="{{ route('admin.spesifikasi.create') }}" class="m-0 font-weight-bold btn btn-success">
-                <i class="fas fa-fw fa-plus-circle"></i> Buat Spesifikasi
-            </a>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-hover data-table" id="view-table" width="100%" cellspacing="0">
                     <thead class="bg-dark text-white">
                         <tr>
                             <th>#</th>
-                            <th>Code</th>
-                            <th>Jenis</th>
+                            <th>Email User</th>
+                            <th>Nilai Rating</th>
+                            <th>Nama Produk</th>
                             <th>Harga</th>
-                            <th>Egine</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,14 +35,18 @@
                     processing: true,
                     serverSide: true,
                     ordering: true,
-                    ajax: "{{ route('admin.spesifikasi.index') }}",
+                    ajax: "{{ route('admin.testimoni.index') }}",
                     columns: [{
                             data: 'DT_RowIndex', 
                             name: 'DT_RowIndex',
                         },
                         {
-                            data: 'code',
-                            name: 'code',
+                            data: 'email_cs',
+                            name: 'email_cs',
+                        },
+                        {
+                            data: 'nilai_rating',
+                            name: 'nilai_rating',
                         },
                         {
                             data: 'nama_vespa',
@@ -56,10 +55,6 @@
                         {
                             data: 'harga_vespa',
                             name: 'harga_vespa',
-                        },
-                        {
-                            data: 'engine',
-                            name: 'engine',
                         },                        
                         {
                             data: 'action',

@@ -9595,6 +9595,10 @@ button.bg-dark:focus {
   color: #4e73df !important;
 }
 
+.text-indigo {
+  color: var(--indigo) !important;
+}
+
 a.text-primary:hover, a.text-primary:focus {
   color: #224abe !important;
 }
@@ -10108,6 +10112,14 @@ a:focus {
 
 .border-bottom-dark {
   border-bottom: 0.25rem solid #5a5c69 !important;
+}
+
+.border-left-indigo {
+  border-left: 0.25rem solid var(--indigo) !important;
+}
+
+.border-bottom-indigo {
+  border-bottom: 0.25rem solid var(--indigo) !important;
 }
 
 .progress-sm {

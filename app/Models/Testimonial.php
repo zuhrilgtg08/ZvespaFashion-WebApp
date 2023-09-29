@@ -1,13 +1,24 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Vespa;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Testimonial extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'testimonial';
+
+    public function vespa()
+    {
+        return $this->belongsTo(Vespa::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

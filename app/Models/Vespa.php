@@ -3,10 +3,11 @@
 namespace App\Models;
 use App\Traits\Uuid;
 use App\Models\Categories;
+use App\Models\Testimonial;
 use App\Models\Specifications;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vespa extends Model
 {
@@ -26,6 +27,11 @@ class Vespa extends Model
     public function specifications()
     {
         return $this->hasMany(Specifications::class);
+    }
+
+    public function testimoni()
+    {
+        return $this->hasMany(Testimonial::class, 'product_id');
     }
 
     public function getRouteKeyName()

@@ -25,7 +25,7 @@ class UsersSeeder extends Seeder
             'u_prov_id' => 11,
             'u_kota_id' => 133,
             'birthday' => null,
-            'religion' => 'Islam',
+            'religion' => 'islam',
             'excerpt' => 'Bibendum letius sed auctor netus montes posuere nulla potenti...',
             'bio_user' => 'Bibendum letius sed auctor netus montes posuere nulla potenti odio nascetur sem interdum placerat sapien eu egestas taciti gravida habitasse',
         ]);
@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
             'u_prov_id' => 11,
             'u_kota_id' => 444,
             'birthday' => null,
-            'religion' => 'Islam',
+            'religion' => 'islam',
             'excerpt' => 'Bibendum letius sed auctor netus montes posuere nulla potenti...',
             'bio_user' => 'Bibendum letius sed auctor netus montes posuere nulla potenti odio nascetur sem interdum placerat sapien eu egestas taciti gravida habitasse',
         ]);
@@ -59,7 +59,7 @@ class UsersSeeder extends Seeder
             'u_prov_id' => 11,
             'u_kota_id' => 290,
             'birthday' => null,
-            'religion' => 'Islam',
+            'religion' => 'islam',
             'excerpt' => 'Bibendum letius sed auctor netus montes posuere nulla potenti...',
             'bio_user' => 'Bibendum letius sed auctor netus montes posuere nulla potenti odio nascetur sem interdum placerat sapien eu egestas taciti gravida habitasse',
         ]);
@@ -76,7 +76,7 @@ class UsersSeeder extends Seeder
             'u_prov_id' => 11,
             'u_kota_id' => 409,
             'birthday' => null,
-            'religion' => 'Islam',
+            'religion' => 'islam',
             'excerpt' => 'Bibendum letius sed auctor netus montes posuere nulla potenti...',
             'bio_user' => 'Bibendum letius sed auctor netus montes posuere nulla potenti odio nascetur sem interdum placerat sapien eu egestas taciti gravida habitasse',
         ]);

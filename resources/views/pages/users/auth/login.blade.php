@@ -21,7 +21,7 @@
                                             </span>
                                         </div>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" 
-                                            id="email" value="{{ old('email') }}" required placeholder="Email Address" />
+                                            id="email" value="{{ old('email') }}" required placeholder="Email Address" autofocus/>
                                         @error('email')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
