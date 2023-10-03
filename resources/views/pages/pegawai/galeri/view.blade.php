@@ -34,7 +34,7 @@
 @push('script')
     <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/datatables/jquery.dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             var datatable = $('#view-table').DataTable({
                 processing: true,
@@ -46,16 +46,19 @@
                         name: 'DT_RowIndex',
                     },
                     {
-                        data: 'kode_gambar',
-                        name: 'kode_gambar',
+                        data: 'uuid',
+                        name: 'uuid',
                     },
                     {
-                        data: 'harga',
-                        name: 'harga',
+                        data: 'name_file',
+                        name: 'name_file',
                     },
                     {
-                        data: 'nama_produk',
-                        name: 'nama_produk',
+                        name: "photos",
+                        data: "photos",
+                        render: function( data, type, full, meta ) {
+                            return '<img src=\'' + data + '\' class=\'rounded-circle\' width=\'50px\' height=\'50px\' style=\'border-radius: 50%\' alt=\'img-photos\'/>';
+                        }
                     },
                     {
                         data: 'action',
@@ -67,5 +70,5 @@
                 order: [[1, 'asc']],
             });
         })
-    </script> --}}
+    </script>
 @endpush

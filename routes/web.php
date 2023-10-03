@@ -3,12 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Data\EventController;
 use App\Http\Controllers\Data\VespaController;
 use App\Http\Controllers\Data\GaleriController;
+use App\Http\Controllers\Data\ArticelController;
 use App\Http\Controllers\Data\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Data\KaryawanController;
 use App\Http\Controllers\Data\DashboardController;
+use App\Http\Controllers\Data\PortfolioController;
 use App\Http\Controllers\Data\CategoriesController;
 use App\Http\Controllers\Data\TestimonialController;
 use App\Http\Controllers\Data\SpecificationController;
@@ -52,6 +55,10 @@ Route::get('/karyawan/manage_data', [KaryawanController::class, 'index'])->middl
 Route::name('karyawan.')->prefix('manage_data')->middleware(['karyawan'])->group(function() {
     Route::resource('/web_builder/galeri', GaleriController::class);
     Route::get('/web_builder/profile/form', [ProfileController::class, 'form'])->name('profile.form');
+    Route::put('/web/builder/profile/update', [ProfileController::class, 'updateForm'])->name('update.form');
+    Route::resource('/articel', ArticelController::class);
+    Route::resource('/event', EventController::class);
+    Route::resource('/portofolio', PortfolioController::class);
 });
 
 // Auth Routes 

@@ -10,6 +10,7 @@ class Galeri extends Model
 {
     use HasFactory, Uuid;
     protected $guarded = ['id'];
+    protected $table = 'galeri_web_builder';
 
     public function product_vespa()
     {

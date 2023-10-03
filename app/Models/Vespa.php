@@ -5,6 +5,7 @@ use App\Traits\Uuid;
 use App\Models\Categories;
 use App\Models\Testimonial;
 use App\Models\Specifications;
+use App\Models\Web_Builder\Galeri;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

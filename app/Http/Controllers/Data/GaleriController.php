@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Data;
-use App\Http\Controllers\Controller;
-use App\Models\Web_Builder\Galeri;
+use App\Models\Vespa;
 use Illuminate\Http\Request;
+use App\Models\Web_Builder\Galeri;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
@@ -33,7 +34,7 @@ class GaleriController extends Controller
                         ';
                 })
                 ->addColumn('name_file', function($row){
-                    return '<h5 class="text-success">'.$row->photos.'</h5>';
+                    return '<div class="text-success d-inline">'.$row->photos.'</d>';
                 })
                 ->editColumn('photos', function ($row) {
                     return asset('storage/' . $row->photos);
@@ -53,7 +54,8 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        //
+        $vespa = Vespa::latest()->get();
+        return view('pages.pegawai.galeri.form', ['vespa' => $vespa]);
     }
 
     /**
@@ -61,7 +63,24 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'product_id' => 'required',
+            'photos' => 'image|file|max:2048|mimes:jpg,jpeg,png,svg',
+        ]);
+
+        if($request->file('photos')){
+            $validate['photos'] = $request->file('photos')->store('Galeri-content');
+        }
+
+        $data = Galeri::create($validate);
+
+        if ($data) {
+            Alert::toast('Nee Photo Content has been created!', 'success')->position('top-end');
+            return redirect()->route('karyawan.galeri.index');
+        } else {
+            Alert::toast('Sory something when wrong!', 'error')->position('top-end');
+            return redirect()->back();
+        }
     }
 
     /**
