@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [
-            'customer' => User::where('roles_type', '=', 1)->count(),
+            'customer' => User::where('roles_type', '=', 0)->count(),
             'karyawan' => User::where('roles_type', '=', 2)->count(),
             'kategori' => Categories::latest()->count(),
             'model_vespa' => Vespa::latest()->count(),
@@ -25,15 +25,13 @@ class DashboardController extends Controller
 
         return view('pages.admin.index', [
             'data' => $data,
-            'trig' => 'dashboard',
         ]);
     }
 
     public function setting(string $email)
     {
         $row = User::where('roles_type', '=', 1)->where('email', $email)->first();
-        // dd($row->id);
-        return view('pages.admin.setting', [
+        return view('pages.setting', [
             'row' => $row,
             'trig' => 'setting-akun',
         ]);

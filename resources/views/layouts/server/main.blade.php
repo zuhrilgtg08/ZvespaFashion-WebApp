@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Dashboard Managements</title>
+        <title>{{ (auth()->user()->roles_type == 1) ? 'Dashboard Managements' : 'Manage Data' }}</title>
         <!-- Custom fonts for this template-->
         <link href="{{ asset('assets/dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/dashboard/css/fontFamilyNunito.css') }}" rel="stylesheet"/>

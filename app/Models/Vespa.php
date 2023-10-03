@@ -26,12 +26,17 @@ class Vespa extends Model
 
     public function specifications()
     {
-        return $this->hasMany(Specifications::class);
+        return $this->hasMany(Specifications::class, 'product_id');
     }
 
     public function testimoni()
     {
         return $this->hasMany(Testimonial::class, 'product_id');
+    }
+
+    public function gambar_galeri()
+    {
+        return $this->hasMany(Galeri::class);
     }
 
     public function getRouteKeyName()
@@ -41,15 +46,28 @@ class Vespa extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
+        $query->when($filters['cari'] ?? false, function ($query, $search) {
             return $query->where('name_product', 'like', '%' . $search . '%')
                 ->orWhere('launch_year', 'like', '%' . $search . '%')
                 ->orWhereHas('category', function ($query) use ($search) {
-                    return $query->where('name_category', 'like', '%' . $search . '%');
+                    return $query->where('name_category', 'like', '%' . $search . '%')
+                        ->orWhere('slug', $search);
                 })
                 ->orWhereHas('specifications', function ($query) use ($search) {
                     return $query->where('type_model', 'like', '%' . $search . '%');
                 });
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return $query->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['specifications'] ?? false, function ($query, $specifications) {
+            return $query->whereHas('specifications', function ($query) use ($specifications) {
+                $query->where('type_model', $specifications);
+            });
         });
     }
 }

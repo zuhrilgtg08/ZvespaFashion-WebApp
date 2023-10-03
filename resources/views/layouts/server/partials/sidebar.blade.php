@@ -1,6 +1,7 @@
 <!-- Sidebar -->
     <ul class="navbar-nav {{ (auth()->user()->roles_type === 1) ? 'bg-gradient-primary' : 'bg-purple' }} sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/manage_dashboard">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" 
+            href="{{ (auth()->user()->roles_type === 1) ? '/admin/manage_dashboard' : '/karyawan/manage_data' }}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-fw fa-digital-tachograph"></i>
             </div>
@@ -14,9 +15,10 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item {{ isset($sbActive) && $sbActive === 'dashboard' ? 'active' : '' }}">
-            <a class="nav-link" href="/admin/manage_dashboard">
+            <a class="nav-link" href="{{ (auth()->user()->roles_type === 1) ? '/admin/manage_dashboard' : '/karyawan/manage_data' }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Dashboard</span>
+            </a>
         </li>
 
         <!-- Divider -->
@@ -27,7 +29,7 @@
             Data
         </div>
 
-        @if (auth()->user()->roles_type == 2)
+        @if (auth()->user()->roles_type === 2)
             @can('karyawan')
             <!-- NavItem - Karyawan -->
                 <li class="nav-item">
@@ -41,15 +43,15 @@
                         aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.galei' ? 'active' : '' }}"
-                                href="">Galeri</a>
+                                href="{{ route('karyawan.galeri.index') }}">Galeri</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.profile' ? 'active' : '' }}"
-                                href="">Profile</a>
+                                href="{{ route('karyawan.profile.form') }}">Profile</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.artikel' ? 'active' : '' }}"
-                                href="">Artikel</a>
+                                href="{{ route('karyawan.articel.index') }}">Artikel</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.events' ? 'active' : '' }}"
-                                href="">Event</a>
+                                href="{{ route('karyawan.event.index') }}">Event</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.porto' ? 'active' : '' }}"
-                                href="">Portofolio</a>
+                                href="{{ route('karyawan.portofolio.index') }}">Portofolio</a>
                         </div>
                     </div>
                 </li>

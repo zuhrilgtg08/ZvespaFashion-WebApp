@@ -38,7 +38,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-800 small">Welcome Back, <span class="text-indigo">{{ auth()->user()->name }}</span> </span>
 
-                    @if (auth()->user()->profile_image)
+                    @if (auth()->user()->profile_image && auth()->user()->roles_type != 0)
                         <img class="img-profile rounded-circle" src="{{ asset('storage/' . auth()->user()->profile_image) }}"/>
                     @else
                         <img class="img-profile rounded-circle" src="{{ asset('assets/dashboard/img/profile.svg') }}"/>
@@ -51,11 +51,16 @@
                         Back to Home
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item {{ (isset($trig) && $trig === 'setting-akun') ? 'active' : '' }}" href="{{ route('admin.setting', auth()->user()->email) }}">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Settings
-                    </a>
-                    <div class="dropdown-divider"></div>
+                    @if (auth()->user()->roles_type == 1)
+                        @can('admin')
+                            <a class="dropdown-item {{ (isset($trig) && $trig === 'setting-akun') ? 'active' : '' }}"
+                                href="{{ route('admin.setting', auth()->user()->email) }}">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                        @endcan
+                    @endif
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Logout

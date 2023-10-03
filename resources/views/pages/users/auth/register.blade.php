@@ -59,7 +59,7 @@
 
                                     <label for="password" class="form-label">Confirm Password</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text"><i class="fas fa-fw fa-check-circle text-success"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-fw fa-check-circle text-primary"></i></span>
                                         <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" 
                                             placeholder="Confirm Password" required />
                                             @error('password')
@@ -70,12 +70,17 @@
                                     </div>
 
                                     <div class="mb-3 text-center">
-                                        <button type="submit" class="btn btn-primary rounded w-50">
+                                        <button type="submit" class="btn btn-success rounded w-50">
                                             <i class="fas fa-fw fa-arrow-alt-circle-right"></i>
                                             Sign up
                                         </button>
                                     </div>
                                 </form>
+                                <div class="text-center text-lg fs-3">
+                                    <p class="text-gray-600">Already have an account?
+                                        <a href="{{ route('login') }}" class="font-bold">Signin</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

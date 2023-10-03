@@ -1,23 +1,6 @@
 <div class="container-fluid mb-5">
     <div class="row border-top px-xl-5">
-        <div class="col-lg-3 d-none d-lg-block">
-            @if (Request::is('home'))
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-success text-white w-100"
-                    aria-expanded="true" href="#" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0 text-white">Categories</h6>
-                    <i class="fa fa-angle-down text-white"></i>
-                </a>
-                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
-                    id="navbar-vertical">
-                    <div class="navbar-nav w-100 overflow-hidden">
-                        @foreach ($categories as $item)
-                            <a href="{{ $item->slug }}" class="nav-item nav-link">{{ $item->name_category }}</a>
-                        @endforeach
-                    </div>
-                </nav>
-            @endif
-        </div>
-        <div class="col-lg-9">
+        <div class="col-lg-12 col-md-12">
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                 <a href="" class="text-decoration-none d-block d-lg-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold">
@@ -58,10 +41,21 @@
                                                 <i class="fas fa-fw fa-database"></i> Back to Dashboard
                                             </a>
                                         @endcan
-                                    @else
+                                    @endif
+
+                                    @if(auth()->user()->roles_type == 2)
+                                        @can('karyawan')
+                                            <a href="/karyawan/manage_data" class="dropdown-item">
+                                                <i class="fas fa-fw fa-file-archive"></i> Manage Data
+                                            </a>
+                                        @endcan
+                                    @endif
+
+                                    @if (auth()->user()->roles_type == 0)
                                         <a href="" class="dropdown-item">Edit</a>
                                         <a href="" class="dropdown-item">History Orders</a>
                                     @endif
+
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="dropdown-item btn-logout">
@@ -78,29 +72,36 @@
             @if (Request::is('home'))
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="{{ asset('assets/customer/img/blank-vespa.png') }}"
-                                alt="Image-vespa" />
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">
-                                        10% Off Your First Order
-                                    </h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">
-                                        Fashionable Dress
-                                    </h3>
-                                    <a href="" class="btn btn-success rounded py-2 px-3">Shop Now</a>
+                        @foreach ($vespa->take(3) as $key => $item)
+                            <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}" style="height: 400px;">
+                                @if ($item->thumbnail)
+                                    <img class="img-fluid" src="{{ asset('storage/' . $item->thumbnail) }}" 
+                                        alt="Image-vespa" />
+                                @else
+                                    <img class="img-fluid" src="{{ asset('assets/customer/img/blank-vespa.png') }}"
+                                        alt="Image-vespa" />
+                                @endif
+                                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                    <div class="p-3" style="max-width: 850px;">
+                                        <h4 class="text-light text-capitalize font-weight-medium mb-3">
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, ut. 10% Off Your First Order
+                                        </h4>
+                                        <h3 class="display-4 text-light font-weight-bolder mb-4">
+                                           {{ $item->name_product }}
+                                        </h3>
+                                        <a href="#" class="btn btn-success rounded py-2 px-3 w-25">Order Now</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                        <div class="btn btn-dark rounded-circle" style="width: 45px; height: 45px;">
                             <span class="carousel-control-prev-icon mb-n2"></span>
                         </div>
                     </a>
                     <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                        <div class="btn btn-dark rounded-circle" style="width: 45px; height: 45px;">
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
                     </a>

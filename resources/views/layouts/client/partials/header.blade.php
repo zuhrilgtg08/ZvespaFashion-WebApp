@@ -32,19 +32,28 @@
         </div>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                            class="text-success font-weight-bold border px-3 mr-1">Z</span>Vespa</h1>
+                <a href="/home" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold">
+                        <span class="text-success font-weight-bold px-3 mr-1">Z</span>Vespa
+                    </h1>
                 </a>
             </div>
-            <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+            <div class="col-lg-6 col-md-6 text-center">
+                <form action="/home" method="GET" autocomplete="off">
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+
+                    @if (request('specifications'))
+                        <input type="hidden" name="specifications" value="{{ request('specifications') }}">
+                    @endif
+                    <div class="input-group mb-3">
+                        <input type="text" name="cari" class="form-control" placeholder="Cari Produk Lainnya disini" 
+                            value="{{ request('cari') }}"/>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-success">
-                                <i class="fa fa-search"></i>
-                            </span>
+                            <button class="btn btn-success" type="submit">
+                                <i class="fa fa-search"></i> Cari Produk
+                            </button>
                         </div>
                     </div>
                 </form>

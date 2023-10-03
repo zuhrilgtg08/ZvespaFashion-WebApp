@@ -5,7 +5,7 @@
 @endpush
 
 @section('main-content')
-    <h3 class="h3 mb-4 text-gray-800">Setting Admin Account</h3>
+    <h3 class="h3 mb-4 text-gray-800">Setting Account - {{ (auth()->user()->roles_type == 1) ? 'Admin' : 'Karyawan' }}</h3>
 
     <div class="row justify-content-center">
         <div class="col-xl-7 col-md-7">
