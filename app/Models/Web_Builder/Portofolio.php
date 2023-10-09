@@ -10,6 +10,7 @@ class Portofolio extends Model
 {
     use HasFactory, Sluggable;
     protected $guarded = ['id'];
+    protected $table = 'portofolio_web_builder';
 
     public function sluggable(): array
     {

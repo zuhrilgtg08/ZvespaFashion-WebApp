@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('profile_web_builder', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('karyawan_id');
             $table->longText('about');
             $table->longText('visi');
             $table->longText('misi');

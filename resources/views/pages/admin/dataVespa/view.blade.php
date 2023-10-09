@@ -5,7 +5,7 @@
 @endpush
 
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">List Produk Vespa</h1>
+    <h1 class="h3 mb-4 text-gray-800">List Produk Vespa & Produk Lainnya</h1>
     <div class="card shadow my-4">
         <div class="card-header py-3">
             <a href="{{ route('admin.vespa.create') }}" class="m-0 font-weight-bold btn btn-success">

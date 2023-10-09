@@ -42,10 +42,10 @@
                     <div id="collapsePages" class="collapse {{ isset($sbMaster) && $sbMaster === true ? 'show' : '' }}"
                         aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.galei' ? 'active' : '' }}"
+                            <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.galeri' ? 'active' : '' }}"
                                 href="{{ route('karyawan.galeri.index') }}">Galeri</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.profile' ? 'active' : '' }}"
-                                href="{{ route('karyawan.profile.form') }}">Profile</a>
+                                href="{{ route('karyawan.profile.form', auth()->user()->id) }}">Profile</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.artikel' ? 'active' : '' }}"
                                 href="{{ route('karyawan.articel.index') }}">Artikel</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.events' ? 'active' : '' }}"
@@ -72,7 +72,7 @@
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.kategori' ? 'active' : '' }}"
                                 href="{{ route('admin.kategori.index') }}">Kategori</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.vespa' ? 'active' : '' }}"
-                                href="{{ route('admin.vespa.index') }}">Vespa</a>
+                                href="{{ route('admin.vespa.index') }}">Vespa & Produk Lainnya</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.karyawan' ? 'active' : '' }}"
                                 href="{{ route('admin.manage_karyawan.index') }}">Karyawan</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.testimoni' ? 'active' : '' }}"

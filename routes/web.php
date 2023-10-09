@@ -53,9 +53,10 @@ Route::get('/admin/manage_dashboard/city/{id}', [ManageKaryawanController::class
 // Routes Karyawan Dashboard Data
 Route::get('/karyawan/manage_data', [KaryawanController::class, 'index'])->middleware('karyawan');
 Route::name('karyawan.')->prefix('manage_data')->middleware(['karyawan'])->group(function() {
-    Route::resource('/web_builder/galeri', GaleriController::class);
-    Route::get('/web_builder/profile/form', [ProfileController::class, 'form'])->name('profile.form');
-    Route::put('/web/builder/profile/update', [ProfileController::class, 'updateForm'])->name('update.form');
+    Route::resource('/web_builder/galeri', GaleriController::class)->except('show');
+    Route::get('/web_builder/profile/form/{id}', [ProfileController::class, 'form'])->name('profile.form');
+    Route::post('/web_builder/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::put('/web/builder/profile/update/{id}', [ProfileController::class, 'updateProfiles'])->name('update.form');
     Route::resource('/articel', ArticelController::class);
     Route::resource('/event', EventController::class);
     Route::resource('/portofolio', PortfolioController::class);

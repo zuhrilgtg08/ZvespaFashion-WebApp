@@ -14,7 +14,7 @@
         <i class="fas fa-fw fa-arrow-left"></i>
         Back
     </a>
-    <h3 class="my-4 text-gray-900">Detail Produk Vespa - ({{ $row->name_product }})</h3>
+    <h3 class="my-4 text-gray-900">Detail Produk & Vespa - ({{ $row->name_product }})</h3>
 
     <div class="row justify-content-center mb-3">
         <div class="col-xl-6 col-md-6">

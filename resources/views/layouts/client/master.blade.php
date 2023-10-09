@@ -37,7 +37,7 @@
         @include('layouts.client.partials.footer')
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up text-white"></i></a>
+        <a href="#" class="btn btn-success back-to-top"><i class="fa fa-angle-double-up text-white"></i></a>
 
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/customer/js/jquery-3.4.1.min.js') }}"></script>

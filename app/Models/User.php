@@ -6,6 +6,8 @@ namespace App\Models;
 use App\Models\Cities;
 use App\Models\Provinces;
 use App\Models\Testimonial;
+use App\Models\Web_Builder\Articel;
+use App\Models\Web_Builder\Profile;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,5 +64,15 @@ class User extends Authenticatable
     public function testimonial()
     {
         return $this->hasMany(Testimonial::class, 'user_id');
+    }
+
+    public function artikel()
+    {
+        return $this->hasMany(Articel::class, 'user_id');
+    }
+
+    public function profile_webBuilder()
+    {
+        return $this->hasMany(Profile::class, 'karyawan_id');
     }
 }

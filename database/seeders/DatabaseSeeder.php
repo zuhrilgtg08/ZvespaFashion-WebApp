@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             VespaSeeder::class,
             TestimonialSeeder::class,
             SpecificationSeeder::class,
+            Web_Builder_ArticelSeeder::class,
+            Web_Builder_ProfileSeeder::class,
+            Web_Builder_PortofolioSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

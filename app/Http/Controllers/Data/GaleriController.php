@@ -26,8 +26,8 @@ class GaleriController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($row) {
                     return '
-                            <a href="/manage_data/web_builder/galeri' . $row->id . '/edit" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                            <form action="http://localhost:3000/manage_data/web_builder/galeri' . $row->id . '" method="POST" class="d-inline">
+                            <a href="/manage_data/web_builder/galeri/' . $row->id . '/edit" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            <form action="http://localhost:3000/manage_data/web_builder/galeri/' . $row->id . '" method="POST" class="d-inline">
                                 ' . method_field('delete') . csrf_field() . '
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </form>
@@ -75,7 +75,7 @@ class GaleriController extends Controller
         $data = Galeri::create($validate);
 
         if ($data) {
-            Alert::toast('Nee Photo Content has been created!', 'success')->position('top-end');
+            Alert::toast('New Photo Content has been created!', 'success')->position('top-end');
             return redirect()->route('karyawan.galeri.index');
         } else {
             Alert::toast('Sory something when wrong!', 'error')->position('top-end');
@@ -96,7 +96,12 @@ class GaleriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $row = Galeri::findOrFail($id);
+        $vespa = Vespa::latest()->get();
+        return view('pages.pegawai.galeri.form', [
+            'row' => $row,
+            'vespa' => $vespa,
+        ]);
     }
 
     /**
@@ -104,7 +109,27 @@ class GaleriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validate = $request->validate([
+            'product_id' => 'required',
+            'photos' => 'image|file|max:2048|mimes:jpg,jpeg,png,svg',
+        ]);
+
+        if ($request->file('photos')) {
+            if($request->oldPhotos) {
+                Storage::delete($request->oldPhotos);
+            }
+            $validate['photos'] = $request->file('photos')->store('Galeri-content');
+        }
+
+        $data = Galeri::find($id)->update($validate);
+
+        if ($data) {
+            Alert::toast('This Photo has been updated!', 'success')->position('top-end');
+            return redirect()->back();
+        } else {
+            Alert::toast('Sory something when wrong!', 'error')->position('top-end');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -112,6 +137,14 @@ class GaleriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Galeri::findOrFail($id);
+
+        if ($data->photos) {
+            Storage::delete($data->photos);
+        }
+
+        $data->destroy($id);
+        Alert::toast('This photo has been deleted!', 'success')->position('top-end');
+        return redirect()->route('karyawan.galeri.index');
     }
 }

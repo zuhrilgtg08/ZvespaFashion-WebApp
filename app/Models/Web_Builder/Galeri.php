@@ -16,4 +16,9 @@ class Galeri extends Model
     {
         return $this->belongsTo(Vespa::class, 'product_id');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

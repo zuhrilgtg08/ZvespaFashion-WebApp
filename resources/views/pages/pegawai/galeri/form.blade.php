@@ -13,8 +13,9 @@
                     <h1 class="h2 text-gray-800 text-center">{{ (isset($row->id)) ? 'Edit Gambar Produk' : 'Input Gambar Baru' }}</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('karyawan.galeri.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ isset($row->id) ? route('karyawan.galeri.update', $row->id) : route('karyawan.galeri.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                         @csrf
+                        @if (isset($row->id)) @method('PUT') @endif
                         <div class="row justify-content-between">
                             <div class="col-lg-6 col-md-6 mb-3">
                                 <label for="data_vespa" class="form-label">List Vespa</label>
@@ -35,8 +36,8 @@
                             <div class="col-lg-6">
                                 <label for="photos-product" class="form-label">Upload Foto Content</label>
                                 @if(isset($row->id) && $row->photos)
-                                <!--hidden OldImage -->
-                                <input type="hidden" name="oldPhotos" value="{{ $row->photos ?? '' }}" />
+                                    <!--hidden OldImage -->
+                                    <input type="hidden" name="oldPhotos" value="{{ $row->photos ?? '' }}" />
                                 @endif
                                 <input type="file" class="form-control-file mb-3 @error('photos') is-invalid @enderror" name="photos" id="photos-product"
                                     onchange="preview()" />

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Data;
+use App\Models\Categories;
+use Illuminate\Http\Request;
+use App\Models\Web_Builder\Articel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Http\Request;
 
 class ArticelController extends Controller
 {
@@ -14,7 +16,7 @@ class ArticelController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.pegawai.articel.view');
     }
 
     /**
@@ -22,7 +24,8 @@ class ArticelController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Categories::select('id', 'name_category')->get();
+        return view('pages.pegawai.articel.form', ['kategori' => $kategori]);
     }
 
     /**

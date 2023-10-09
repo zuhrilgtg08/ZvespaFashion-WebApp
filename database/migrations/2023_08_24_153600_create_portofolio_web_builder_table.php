@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portofolio', function (Blueprint $table) {
+        Schema::create('portofolio_web_builder', function (Blueprint $table) {
             $table->id();
             $table->string('title_porto');
             $table->string('slug');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portofolio');
+        Schema::dropIfExists('portofolio_web_builder');
     }
 };
