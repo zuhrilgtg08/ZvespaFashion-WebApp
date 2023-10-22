@@ -14,7 +14,7 @@ class CategoriesSeeder extends Seeder
     public function run(): void
     {
         $datas = [
-            ['name_category' => 'Otomotif & Kendaraan', 'slug' => 'otomotif-&-kendaraan'],
+            ['name_category' => 'Otomotif dan Kendaraan', 'slug' => 'otomotif-dan-kendaraan'],
             ['name_category' => 'Produktivitas', 'slug' => 'produktivitas'],
             ['name_category' => 'Personalisasi', 'slug' => 'personalisasi'],
             ['name_category' => 'Komunikasi', 'slug' => 'komunikasi'],

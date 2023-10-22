@@ -9,6 +9,11 @@ class Events extends Model
 {
     use HasFactory, Sluggable;
     protected $guarded = ['id'];
+    protected $table = 'events_web_builder';
+
+    protected $casts = [
+        'photo_pameran' => 'array',
+    ];
 
     public function sluggable(): array
     {

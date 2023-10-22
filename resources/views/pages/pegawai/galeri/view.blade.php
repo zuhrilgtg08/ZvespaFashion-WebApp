@@ -16,7 +16,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-hover data-table" id="view-table" width="100%" cellspacing="0">
-                    <thead class="bg-primary text-white">
+                    <thead class="bg-dark text-white">
                         <tr>
                             <th>#</th>
                             <th>Kode</th>

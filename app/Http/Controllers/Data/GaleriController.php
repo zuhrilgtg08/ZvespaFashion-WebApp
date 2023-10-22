@@ -34,7 +34,7 @@ class GaleriController extends Controller
                         ';
                 })
                 ->addColumn('name_file', function($row){
-                    return '<div class="text-success d-inline">'.$row->photos.'</d>';
+                    return '<a href="#" class="text-primary d-inline underline">' . $row->photos . '</a>';
                 })
                 ->editColumn('photos', function ($row) {
                     return asset('storage/' . $row->photos);

@@ -2235,6 +2235,17 @@ a.btn.disabled,
 fieldset:disabled a.btn {
     pointer-events: none;
 }
+.btn-indigo {
+  color: #c3c3c3;
+  background-color: var(--indigo);
+  border-color: var(--purple);
+}
+
+.btn-indigo:hover {
+  color: #fff;
+  background-color: var(--indigo);
+  border-color: var(--purple);
+}
 .btn-primary {
     color: #fff;
     background-color: #4e73df;

@@ -1,4 +1,4 @@
-@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.artikel'])
+@extends('layouts.server.main', ['sbMaster' => true, 'sbActive' => 'data.events'])
 
 
 @push('style')
@@ -6,11 +6,11 @@
 @endpush
 
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">List Artikel - {{ auth()->user()->name }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">List Data Pameran Vespa</h1>
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <a href="{{ route('karyawan.articel.create') }}" class="m-0 font-weight-bold btn btn-success">
-                <i class="fas fa-fw fa-plus-circle"></i> BUat Artikel Baru
+            <a href="{{ route('karyawan.event.create') }}" class="m-0 font-weight-bold btn btn-success">
+                <i class="fas fa-fw fa-plus-circle"></i> Tambah Event Baru
             </a>
         </div>
         <div class="card-body">
@@ -19,10 +19,9 @@
                     <thead class="bg-dark text-white">
                         <tr>
                             <th>#</th>
-                            <th>Kode</th>
-                            <th>Judul Artikel</th>
-                            <th>Kategori</th>
-                            <th>Creator</th>
+                            <th>Nama Pameran</th>
+                            <th>Tgl Mulai</th>
+                            <th>Tempat Pameran</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,36 +34,28 @@
 @push('script')
     <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/datatables/jquery.dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             var datatable = $('#view-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ordering: true,
-                ajax: "{{ route('admin.vespa.index') }}",
+                ajax: "{{ route('karyawan.event.index') }}",
                 columns: [{
                         data: 'DT_RowIndex', 
                         name: 'DT_RowIndex',
                     },
                     {
-                        data: 'kode_produk',
-                        name: 'kode_produk',
+                        data: 'nama_pameran',
+                        name: 'nama_pameran',
                     },
                     {
-                        data: 'harga',
-                        name: 'harga',
+                        data: 'begin_event',
+                        name: 'begin_event',
                     },
                     {
-                        data: 'nama_produk',
-                        name: 'nama_produk',
-                    },
-                    {
-                        data: 'nomor_seri',
-                        name: 'nomor_seri',
-                    },
-                    {
-                        data: 'stok',
-                        name: 'stok',
+                        data: 'place_event',
+                        name: 'place_event',
                     },
                     {
                         data: 'action',
@@ -76,5 +67,5 @@
                 order: [[1, 'asc']],
             });
         })
-    </script> --}}
+    </script>
 @endpush

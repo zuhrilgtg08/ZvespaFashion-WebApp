@@ -49,7 +49,7 @@
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.artikel' ? 'active' : '' }}"
                                 href="{{ route('karyawan.articel.index') }}">Artikel</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.events' ? 'active' : '' }}"
-                                href="{{ route('karyawan.event.index') }}">Event</a>
+                                href="{{ route('karyawan.event.index') }}">Events</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.porto' ? 'active' : '' }}"
                                 href="{{ route('karyawan.portofolio.index') }}">Portofolio</a>
                         </div>

@@ -10,7 +10,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data Artikel
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-900">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-900">{{ $data_p['artikel'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-blog fa-2x"></i>
@@ -27,7 +27,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data Portofolio
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-900">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-900">{{ $data_p['portofolio'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-chalkboard-teacher fa-2x"></i>
@@ -44,7 +44,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data Events
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data_p['events'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="far fa-calendar-check fa-2x"></i>
@@ -61,7 +61,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data Galeri
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data_p['galeri'] }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="far fa-images fa-2x"></i>

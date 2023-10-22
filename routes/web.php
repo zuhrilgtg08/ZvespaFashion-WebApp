@@ -9,13 +9,16 @@ use App\Http\Controllers\Data\GaleriController;
 use App\Http\Controllers\Data\ArticelController;
 use App\Http\Controllers\Data\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Data\KaryawanController;
+use App\Http\Controllers\Data\DashboardKaryawanController;
 use App\Http\Controllers\Data\DashboardController;
 use App\Http\Controllers\Data\PortfolioController;
 use App\Http\Controllers\Data\CategoriesController;
 use App\Http\Controllers\Data\TestimonialController;
 use App\Http\Controllers\Data\SpecificationController;
 use App\Http\Controllers\Data\ManageKaryawanController;
+// ONly About Routes 
+use App\Models\Web_Builder\Profile;
+use App\Models\Web_Builder\Galeri;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,16 +54,19 @@ Route::get('/admin/manage_dashboard/kategori/checkSlug', [CategoriesController::
 Route::get('/admin/manage_dashboard/city/{id}', [ManageKaryawanController::class, 'chooseCity'])->middleware('admin');
 
 // Routes Karyawan Dashboard Data
-Route::get('/karyawan/manage_data', [KaryawanController::class, 'index'])->middleware('karyawan');
+Route::get('/karyawan/manage_data', [DashboardKaryawanController::class, 'index'])->middleware('karyawan');
 Route::name('karyawan.')->prefix('manage_data')->middleware(['karyawan'])->group(function() {
     Route::resource('/web_builder/galeri', GaleriController::class)->except('show');
     Route::get('/web_builder/profile/form/{id}', [ProfileController::class, 'form'])->name('profile.form');
     Route::post('/web_builder/profile/store', [ProfileController::class, 'store'])->name('profile.store');
     Route::put('/web/builder/profile/update/{id}', [ProfileController::class, 'updateProfiles'])->name('update.form');
-    Route::resource('/articel', ArticelController::class);
-    Route::resource('/event', EventController::class);
-    Route::resource('/portofolio', PortfolioController::class);
+    Route::resource('/articel', ArticelController::class)->except('show');
+    Route::resource('/event', EventController::class)->except('show');
+    Route::resource('/portofolio', PortfolioController::class)->except('show');
 });
+Route::get('/karyawan/manage_data/articel/checkSlug', [ArticelController::class, 'checkSlug'])->middleware('karyawan');
+Route::get('/karyawan/manage_data/event/checkSlug', [EventController::class, 'checkSlug'])->middleware('karyawan');
+Route::get('/karyawan/manage_data/portofolio/checkSlug', [PortfolioController::class, 'checkSlug'])->middleware('karyawan');
 
 // Auth Routes 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -72,5 +78,13 @@ Route::post('/register/store', [RegisterController::class, 'store'])->name('regi
 // Default Routes Content
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function(){
-    return view('pages.users.about');
+    return view('pages.users.about', [
+        'data_about' =>  Profile::latest()->first(),
+        'data_galeri' => Galeri::latest()->get(),
+    ]);
+});
+Route::get('/visiMisi', function(){
+    return view('pages.users.visiMisi', [
+        'data_visi_misi' => Profile::latest()->first(),
+    ]);
 });

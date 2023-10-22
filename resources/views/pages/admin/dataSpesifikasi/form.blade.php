@@ -26,7 +26,7 @@
                                             <span class="input-group-text" id="basic-addon"><i class="fas fa-motorcycle"></i></span>
                                         </div>
                                         <select class="custom-select" name="product_id" id="data_vespa">
-                                            <option selected disabled>Pilih Motor</option>
+                                            <option selected disabled>Pilih Produk</option>
                                             @foreach ($vespa as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ isset($row->id) && $row->product_id == $item->id ? 'selected' : ''}}>

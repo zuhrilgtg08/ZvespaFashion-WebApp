@@ -13,8 +13,8 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/home" class="nav-item nav-link {{ Request::is('home') ? 'active' : '' }}">Home</a>
-                        <a href="" class="nav-item nav-link">About</a>
-                        <a href="" class="nav-item nav-link">Visi & Misi</a>
+                        <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">About</a>
+                        <a href="/visiMisi" class="nav-item nav-link {{ Request::is('visiMisi') ? 'active' : '' }}">Visi & Misi</a>
                         <a href="" class="nav-item nav-link">Popular</a>
                         <a href="" class="nav-item nav-link">Events</a>
                         <a href="" class="nav-item nav-link">Articel</a>
@@ -84,7 +84,7 @@
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 850px;">
                                         <h4 class="text-light text-capitalize font-weight-medium mb-3">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque, ut. 10% Off Your First Order
+                                            Find out more about our special promo on accessories and ride for your dream Vespa now
                                         </h4>
                                         <h3 class="display-4 text-light font-weight-bolder mb-4">
                                            {{ $item->name_product }}
