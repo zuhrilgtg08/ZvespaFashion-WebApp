@@ -11,6 +11,7 @@ class Testimonial extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'testimonial';
+    protected $with = ['customer', 'vespa'];
 
     public function vespa()
     {

@@ -2240,74 +2240,73 @@ fieldset:disabled a.btn {
     pointer-events: none;
 }
 .btn-primary {
-    color: #212529;
-    background-color: #d19c97;
-    border-color: #d19c97;
+  color: #fff;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
+
 .btn-primary:hover {
-    color: #fff;
-    background-color: #c5837c;
-    border-color: #c17a74;
+  color: #fff;
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
-.btn-primary:focus,
-.btn-primary.focus {
-    color: #fff;
-    background-color: #c5837c;
-    border-color: #c17a74;
-    box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
+.btn-primary:focus, .btn-primary.focus {
+  color: #fff;
+  background-color: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 .1px rgba(61, 58, 57, 0.5);
 }
-.btn-primary.disabled,
-.btn-primary:disabled {
-    color: #212529;
-    background-color: #d19c97;
-    border-color: #d19c97;
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #212529;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
-.btn-primary:not(:disabled):not(.disabled):active,
-.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #c17a74;
-    border-color: #bd726b;
+  color: #fff;
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
-.btn-primary:not(:disabled):not(.disabled):active:focus,
-.btn-primary:not(:disabled):not(.disabled).active:focus,
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
+    box-shadow: 0 0 0 .1px rgba(61, 58, 57, 0.5);
 }
 .btn-secondary {
-    color: #212529;
-    background-color: #edf1ff;
-    border-color: #edf1ff;
+    color: #edf1ff;
+    background-color: var(--gray-dark);
+    border-color: var(--gray-dark);
 }
 .btn-secondary:hover {
-    color: #212529;
-    background-color: #c7d3ff;
-    border-color: #bac9ff;
+    color: var(--gray);
+    background-color: var(--gray-dark);
+    border-color: var(--gray-dark);
 }
 .btn-secondary:focus,
 .btn-secondary.focus {
-    color: #212529;
-    background-color: #c7d3ff;
-    border-color: #bac9ff;
-    box-shadow: 0 0 0 0.2rem rgba(206, 210, 223, 0.5);
+    color: #edf1ff;
+    background-color: var(--gray-dark);
+    border-color: var(--gray-dark);
+    box-shadow: 0 0 0 0.1px rgba(206, 210, 223, 0.5);
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
-    color: #212529;
-    background-color: #edf1ff;
-    border-color: #edf1ff;
+    color: #edf1ff;
+    background-color: var(--gray-dark);
+    border-color: var(--gray-dark);
 }
 .btn-secondary:not(:disabled):not(.disabled):active,
 .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
-    color: #212529;
-    background-color: #bac9ff;
-    border-color: #adbfff;
+    color: #edf1ff;
+    background-color: var(--gray-dark);
+    border-color: var(--gray-dark);
 }
 .btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-secondary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(206, 210, 223, 0.5);
+    box-shadow: 0 0 0 .1px rgba(206, 210, 223, 0.5);
 }
 .btn-success {
     color: #fff;
@@ -4764,18 +4763,18 @@ a.badge-dark.focus {
     border-bottom-width: 0;
 }
 .list-group-item-primary {
-    color: #6d514f;
-    background-color: #f2e3e2;
+    color: #052c65;
+    background-color: #cfe2ff;
 }
 .list-group-item-primary.list-group-item-action:hover,
 .list-group-item-primary.list-group-item-action:focus {
-    color: #6d514f;
-    background-color: #ead2d0;
+    color: #052c65;
+    background-color: #cfe2ff;
 }
 .list-group-item-primary.list-group-item-action.active {
     color: #fff;
-    background-color: #6d514f;
-    border-color: #6d514f;
+    background-color: var(--primary);
+    border-color: var(--blue);
 }
 .list-group-item-secondary {
     color: #7b7d85;

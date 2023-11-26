@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Vespa;
 use App\Models\Categories;
-use App\Models\Specifications;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Models\Specifications;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -32,6 +35,11 @@ class HomeController extends Controller
 
     public function detail(string $uuid)
     {
-        
+        $row = Vespa::with(['specifications', 'testimoni'])->where('uuid', $uuid)->first();
+        $all_rev = $row->testimoni->sum('rate') / $row->testimoni->count();
+        return view('pages.detail', [
+            'row' => $row,
+            'all_rev' => $all_rev
+        ]);
     }
 }

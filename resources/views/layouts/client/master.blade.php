@@ -25,7 +25,7 @@
                 outline: none;
             }
         </style>
-        @yield('styles')
+        @stack('styles')
     </head>
 
     <body>
@@ -50,6 +50,6 @@
         <script src="{{ asset('assets/customer/mail/contact.js') }}"></script>
         <!-- Template Javascript -->
         <script src="{{ asset('assets/customer/js/main.js') }}"></script>
-        @yield('scripts')
+        @stack('scripts')
     </body>
 </html>

@@ -10,21 +10,52 @@
                 <p class="text-gray-900 text-justify">{!! $data_about->about !!}</p>
             </div>
             <div class="col-lg-10 col-md-10">
-                <h3 class="section-title px-5 mb-5"><span class="px-2">Galeri Produk & Perusahaan</span></h3>
+                <h3 class="section-title px-5 mb-5"><span class="px-2">Galeri Produk Perusahaan</span></h3>
                 <div class="row justify-content-center">
-                    @foreach ($data_galeri as $item)
-                        <div class="col-md-3 col-sm-3">
-                            <div class="card h-100 shadow-sm border-0 rounded">
-                                @if ($item->photos)
-                                    <img src="{{ asset('storage/' . $item->photos) }}" alt="img-galeri" class="card-img-top" />
-                                @else 
-                                    <img src="{{ asset('assets/customer/img/blank-vespa.png') }}" alt="img-galeri" class="card-img-top" />
-                                @endif
+                    <div class="owl-carousel about-carousel">
+                        @foreach ($data_galeri as $item)
+                            <div class="about-item">
+                                <div class="col-md-12 col-sm-6">
+                                    <div class="card h-100 border-0 rounded">
+                                        @if ($item->photos)
+                                            <img src="{{ asset('storage/' . $item->photos) }}" alt="img-galeri" class="card-img-top" />
+                                        @else 
+                                            <img src="{{ asset('assets/customer/img/blank-vespa.png') }}" alt="img-galeri" class="card-img-top" />
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('.about-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            center:true,
+            nav: false,
+            autoplay: true,
+            smartSpeed: 3000,
+            responsive:{
+                0:{
+                    items:1
+                },
+                1200:{
+                    items:3
+                },
+                576:{
+                    items:5
+                },
+                768: {
+                    items:6
+                },
+            }
+        });
+    </script>
+@endpush

@@ -15,9 +15,10 @@
                         <a href="/home" class="nav-item nav-link {{ Request::is('home') ? 'active' : '' }}">Home</a>
                         <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">About</a>
                         <a href="/visiMisi" class="nav-item nav-link {{ Request::is('visiMisi') ? 'active' : '' }}">Visi & Misi</a>
-                        <a href="" class="nav-item nav-link">Popular</a>
-                        <a href="" class="nav-item nav-link">Events</a>
-                        <a href="" class="nav-item nav-link">Articel</a>
+                        <a href="/popular" class="nav-item nav-link {{ Request::is('popular') ? 'active' : '' }}">Popular</a>
+                        <a href="/eventsCompany" class="nav-item nav-link {{ Request::is('eventsCompany') ? 'active' : '' }}">Events</a>
+                        <a href="/articelCompany" class="nav-item nav-link {{ Request::is('articelCompany') ? 'active' : '' }}">Articel</a>
+                        <a href="/portofolioCompany" class="nav-item nav-link {{ Request::is('portofolioCompany') ? 'active' : '' }}">Portofolio</a>
                     </div>
                     @guest
                         <div class="navbar-nav ml-auto py-0">
@@ -52,9 +53,16 @@
                                     @endif
 
                                     @if (auth()->user()->roles_type == 0)
-                                        <a href="" class="dropdown-item">Edit</a>
-                                        <a href="" class="dropdown-item">History Orders</a>
+                                        <a href="" class="dropdown-item">
+                                            <i class="fas fa-fw fa-edit"></i> Edit Profile
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="" class="dropdown-item">
+                                           <i class="fas fa-fw fa-history"></i> History Orders
+                                        </a>
                                     @endif
+                                        
+                                    <div class="dropdown-divider"></div>
 
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf

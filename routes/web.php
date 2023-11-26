@@ -8,17 +8,21 @@ use App\Http\Controllers\Data\VespaController;
 use App\Http\Controllers\Data\GaleriController;
 use App\Http\Controllers\Data\ArticelController;
 use App\Http\Controllers\Data\ProfileController;
+use App\Http\Controllers\FrontPopularController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Data\DashboardKaryawanController;
 use App\Http\Controllers\Data\DashboardController;
 use App\Http\Controllers\Data\PortfolioController;
 use App\Http\Controllers\Data\CategoriesController;
 use App\Http\Controllers\Data\TestimonialController;
 use App\Http\Controllers\Data\SpecificationController;
 use App\Http\Controllers\Data\ManageKaryawanController;
+use App\Http\Controllers\Data\DashboardKaryawanController;
+use App\Http\Controllers\FrontArticelController;
+use App\Http\Controllers\FrontEventsController;
+use App\Http\Controllers\FrontPortofolioController;
 // ONly About Routes 
-use App\Models\Web_Builder\Profile;
 use App\Models\Web_Builder\Galeri;
+use App\Models\Web_Builder\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +35,7 @@ use App\Models\Web_Builder\Galeri;
 |
 */
 
-// Root Access
+// Root First Access
 Route::get('/', function () {
     return redirect('/home');
 });
@@ -68,14 +72,14 @@ Route::get('/karyawan/manage_data/articel/checkSlug', [ArticelController::class,
 Route::get('/karyawan/manage_data/event/checkSlug', [EventController::class, 'checkSlug'])->middleware('karyawan');
 Route::get('/karyawan/manage_data/portofolio/checkSlug', [PortfolioController::class, 'checkSlug'])->middleware('karyawan');
 
-// Auth Routes 
+// Authenticate Routes 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
 
-// Default Routes Content
+// Default Routes Content for Front View
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', function(){
     return view('pages.users.about', [
@@ -88,3 +92,10 @@ Route::get('/visiMisi', function(){
         'data_visi_misi' => Profile::latest()->first(),
     ]);
 });
+Route::resource('/popular', FrontPopularController::class)->except(['create', 'store', 'edit', 'show', 'update', 'destroy'])->middleware('auth');
+Route::get('/eventsCompany', [FrontEventsController::class, 'index'])->middleware('auth');
+Route::get('/eventsCompany/detail/{slug}', [FrontEventsController::class, 'show'])->middleware('auth');
+Route::get('/portofolioCompany', [FrontPortofolioController::class, 'index'])->middleware('auth');
+Route::get('/portofolioCompany/detail/{slug}', [FrontPortofolioController::class, 'show'])->middleware('auth');
+Route::resource('/articelCompany', FrontArticelController::class)->middleware('auth');
+Route::get('/detailProduk/{products_vespa:uuid}', [HomeController::class, 'detail'])->name('detail.produk')->middleware('auth');

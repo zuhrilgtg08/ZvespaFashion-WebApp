@@ -14,6 +14,7 @@ class Vespa extends Model
 {
     use HasFactory, Uuid;
     protected $guarded = ['id'];
+    protected $with = ['specifications', 'testimoni'];
     protected $table = 'products_vespa';
 
     protected $casts = [

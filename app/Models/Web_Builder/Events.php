@@ -23,4 +23,9 @@ class Events extends Model
             ]
         ];
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
