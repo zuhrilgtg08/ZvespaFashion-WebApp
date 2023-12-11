@@ -59,7 +59,6 @@
         }
     });
 
-
     // Related carousel
     $('.related-carousel').owlCarousel({
         loop: true,

@@ -1,28 +1,30 @@
 <?php
 
+use App\Models\Web_Builder\Galeri;
+use App\Models\Web_Builder\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Data\EventController;
 use App\Http\Controllers\Data\VespaController;
 use App\Http\Controllers\Data\GaleriController;
+use App\Http\Controllers\FrontEventsController;
 use App\Http\Controllers\Data\ArticelController;
 use App\Http\Controllers\Data\ProfileController;
+use App\Http\Controllers\FrontArticelController;
 use App\Http\Controllers\FrontPopularController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Data\DashboardController;
 use App\Http\Controllers\Data\PortfolioController;
 use App\Http\Controllers\Data\CategoriesController;
+use App\Http\Controllers\FrontPortofolioController;
 use App\Http\Controllers\Data\TestimonialController;
+// ONly About Routes 
 use App\Http\Controllers\Data\SpecificationController;
 use App\Http\Controllers\Data\ManageKaryawanController;
 use App\Http\Controllers\Data\DashboardKaryawanController;
-use App\Http\Controllers\FrontArticelController;
-use App\Http\Controllers\FrontEventsController;
-use App\Http\Controllers\FrontPortofolioController;
-// ONly About Routes 
-use App\Models\Web_Builder\Galeri;
-use App\Models\Web_Builder\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +83,7 @@ Route::post('/register/store', [RegisterController::class, 'store'])->name('regi
 
 // Default Routes Content for Front View
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/detailProduk/{products_vespa:uuid}', [HomeController::class, 'detail'])->name('detail.produk')->middleware('auth');
 Route::get('/about', function(){
     return view('pages.users.about', [
         'data_about' =>  Profile::latest()->first(),
@@ -92,10 +95,30 @@ Route::get('/visiMisi', function(){
         'data_visi_misi' => Profile::latest()->first(),
     ]);
 });
+
+// Reviews Routes
+Route::post('/detailProduk/reviews', [HomeController::class, 'reviewsAndComents'])->name('ratings.add')->middleware('auth');
+// Popular Product Routes
 Route::resource('/popular', FrontPopularController::class)->except(['create', 'store', 'edit', 'show', 'update', 'destroy'])->middleware('auth');
+// Popular Events Routes
 Route::get('/eventsCompany', [FrontEventsController::class, 'index'])->middleware('auth');
 Route::get('/eventsCompany/detail/{slug}', [FrontEventsController::class, 'show'])->middleware('auth');
+// Portofolio Product Routes
 Route::get('/portofolioCompany', [FrontPortofolioController::class, 'index'])->middleware('auth');
 Route::get('/portofolioCompany/detail/{slug}', [FrontPortofolioController::class, 'show'])->middleware('auth');
-Route::resource('/articelCompany', FrontArticelController::class)->middleware('auth');
-Route::get('/detailProduk/{products_vespa:uuid}', [HomeController::class, 'detail'])->name('detail.produk')->middleware('auth');
+// Articel Resources Routes
+Route::resource('/articelCompany', FrontArticelController::class)->except(['create', 'store', 'edit', 'update', 'destroy'])->middleware('auth');
+// Routes Customer Edit Data & History LIst
+Route::get('/data/edit/{users:email}', [CustomerController::class, 'edit'])->middleware('auth')->name('edit.data');
+Route::put('/data/update/{users:id}', [CustomerController::class, 'update'])->middleware('auth')->name('update.data');
+Route::put('/data/updatePassword/{id}', [CustomerController::class, 'updatePasswordAccount'])->middleware('auth')->name('update.password.account');
+Route::get('/data/kota/{id}', [CustomerController::class, 'pilihKota'])->middleware('auth');
+Route::get('/history/list', [CustomerController::class, 'historyOrder'])->middleware('auth')->name('history.index');
+
+// Cart Routes Customer
+Route::name('cart.')->middleware(['auth'])->group(function () {
+    Route::get('/list/product/cart', [CartController::class, 'list'])->name('list');
+    Route::post('/add/cart/store', [CartController::class, 'store'])->name('store');
+    Route::put('/edit/cart/update/{id}', [CartController::class, 'update'])->name('update');
+    Route::delete('/product/cart/destroy/{id}', [CartController::class, 'destroy'])->name('destroy');
+});

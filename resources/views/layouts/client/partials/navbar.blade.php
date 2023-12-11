@@ -53,11 +53,11 @@
                                     @endif
 
                                     @if (auth()->user()->roles_type == 0)
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('edit.data', auth()->user()->email) }}" class="dropdown-item">
                                             <i class="fas fa-fw fa-edit"></i> Edit Profile
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="" class="dropdown-item">
+                                        <a href="{{ route('history.index') }}" class="dropdown-item">
                                            <i class="fas fa-fw fa-history"></i> History Orders
                                         </a>
                                     @endif

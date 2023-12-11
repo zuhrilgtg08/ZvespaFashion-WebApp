@@ -24,6 +24,6 @@ class FrontEventsController extends Controller
     public function show(string $slug) 
     {   
         $row = Events::where('slug', '=', $slug)->first();
-        return response()->json($row);
+        return view('pages.users.eventsCompany_detail', ['row' => $row]);
     }
 }

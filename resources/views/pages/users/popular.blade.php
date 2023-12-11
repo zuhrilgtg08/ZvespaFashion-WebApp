@@ -9,9 +9,9 @@
                     <div class="row pt-3">
                         @foreach ($datas as $item)
                             <div class="col-lg-3 col-md-3">
-                                <div class="card shadow-sm h-100 rounded">
+                                <div class="card shadow-sm rounded">
                                     @if($item->thumbnail)
-                                        <img src="{{ asset('storage/' . $item->thumbnail) }}" class="card-img-top" alt="image-popular"/>
+                                        <img src="{{ asset('storage/' . $item->thumbnail) }}" width="200" class="card-img-top" alt="image-popular" style="width:100%;"/>
                                     @else
                                         <img src="{{ asset('assets/customer/img/blank-vespa.png') }}" class="card-img-top" alt="image-popular"/>
                                     @endif

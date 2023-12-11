@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Cart;
 use App\Traits\Uuid;
 use App\Models\Categories;
 use App\Models\Testimonial;
@@ -39,6 +40,11 @@ class Vespa extends Model
     public function gambar_galeri()
     {
         return $this->hasMany(Galeri::class);
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
     }
 
     public function getRouteKeyName()

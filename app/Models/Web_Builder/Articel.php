@@ -28,6 +28,11 @@ class Articel extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function sluggable(): array
     {
         return [

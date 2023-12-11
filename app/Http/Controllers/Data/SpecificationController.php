@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Models\Vespa;
 
 use Illuminate\Http\Request;
+use Symfony\Component\CssSelector\Node\Specificity;
 
 class SpecificationController extends Controller
 {
@@ -57,8 +58,8 @@ class SpecificationController extends Controller
      */
     public function create()
     {
-        $vespa = Vespa::get(['id', 'name_product']);
-        return view('pages.admin.dataSpesifikasi.form', ['vespa' => $vespa]);
+        $vespa = Vespa::with('specifications')->get(['id', 'name_product']);
+        return view('pages.admin.dataSpesifikasi.form', compact('vespa'));
     }
 
     /**
@@ -84,7 +85,7 @@ class SpecificationController extends Controller
         $data = Specifications::create($validateData);
 
         if ($data) {
-            Alert::toast('New vespa specifications has been created!', 'success')->position('top-end');
+            Alert::toast('New Product specifications has been created!', 'success')->position('top-end');
             return redirect()->route('admin.spesifikasi.index');
         } else {
             Alert::toast('Sory something when wrong!', 'error')->position('top-end');
@@ -137,7 +138,7 @@ class SpecificationController extends Controller
         $data = Specifications::find($id)->update($validateData);
 
         if ($data) {
-            Alert::toast('This vespa specifications has been updated!', 'success')->position('top-end');
+            Alert::toast('This Product specifications has been updated!', 'success')->position('top-end');
             return redirect()->route('admin.spesifikasi.edit', $id);
         } else {
             Alert::toast('Sory something when wrong!', 'error')->position('top-end');
@@ -151,7 +152,7 @@ class SpecificationController extends Controller
     public function destroy(string $id)
     {
         Specifications::find($id)->delete();
-        Alert::toast('This vespa specifications has been deleted!', 'success')->position('top-end');
+        Alert::toast('This Product specifications has been deleted!', 'success')->position('top-end');
         return redirect()->route('admin.spesifikasi.index');
     }
 }

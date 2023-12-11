@@ -109,9 +109,14 @@
                                     <a href="{{ route('detail.produk', $item->uuid) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>
                                         View Detail
                                     </a>
-                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-danger mr-1"></i>
-                                        Add To Cart
-                                    </a>
+                                    <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $item->id }}"/>
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button type="submit" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-danger mr-1"></i>
+                                            Add To Cart
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

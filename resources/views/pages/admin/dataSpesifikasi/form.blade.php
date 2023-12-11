@@ -28,10 +28,10 @@
                                         <select class="custom-select" name="product_id" id="data_vespa">
                                             <option selected disabled>Pilih Produk</option>
                                             @foreach ($vespa as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ isset($row->id) && $row->product_id == $item->id ? 'selected' : ''}}>
-                                                    {{ $item->name_product }}
-                                                </option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ isset($row->id) && $row->product_id == $item->id ? 'selected' : ''}}>
+                                                        {{ $item->name_product }}
+                                                    </option>
                                             @endforeach
                                         </select>
                                     </div>

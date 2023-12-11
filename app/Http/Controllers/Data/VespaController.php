@@ -97,7 +97,7 @@ class VespaController extends Controller
         $data = Vespa::create($validateData);
         
         if($data) {
-            Alert::toast('New vespa has been created!', 'success')->position('top-end');
+            Alert::toast('New Product has been created!', 'success')->position('top-end');
             return redirect()->route('admin.vespa.index');
         } else {
             Alert::toast('Sory something when wrong!', 'error')->position('top-end');
@@ -170,7 +170,7 @@ class VespaController extends Controller
         $row = Vespa::find($id)->update($validateData);
 
         if ($row) {
-            Alert::toast('This vespa has been updated!', 'success')->position('top-end');
+            Alert::toast('This Product has been updated!', 'success')->position('top-end');
             return redirect()->route('admin.vespa.edit', $id);
         } else {
             Alert::toast('Sory something when wrong!', 'error')->position('top-end');
@@ -191,7 +191,7 @@ class VespaController extends Controller
         }
 
         $data->destroy($id);
-        Alert::toast('This vespa has been deleted!', 'success')->position('top-end');
+        Alert::toast('This Product has been deleted!', 'success')->position('top-end');
         return redirect()->route('admin.vespa.index');
     }
 }
