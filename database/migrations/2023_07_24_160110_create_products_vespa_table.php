@@ -24,6 +24,17 @@ return new class extends Migration
             $table->integer('harga_product');
             $table->string('excerpt');
             $table->longText('detail_product');
+            $table->string('engine');
+            $table->string('displacement');
+            $table->string('max_power');
+            $table->string('max_torque');
+            $table->string('colling_system');
+            $table->string('transmission');
+            $table->string('brake_system');
+            $table->string('front_tire');
+            $table->string('rear_tire');
+            $table->string('type_model');
+            $table->string('fuel_capacity');
             $table->timestamps();
         });
     }

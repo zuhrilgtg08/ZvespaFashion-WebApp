@@ -70,6 +70,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-12 col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-md-7">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <div class="row text-center">
+                                    <li class="list-group-item text-gray-900">Engine : {{ $row->engine }}</li>
+                                    <li class="list-group-item text-gray-900">Displacement : {{ $row->displacement }}</li>
+                                    <li class="list-group-item text-gray-900">Max Power : {{ $row->max_power }}</li>
+                                    <li class="list-group-item text-gray-900">Max Torque : {{ $row->max_torque }}</li>
+                                    <li class="list-group-item text-gray-900">Colling System : {{ $row->colling_system }}</li>
+                                    <li class="list-group-item text-gray-900">Brake System : {{ $row->brake_system }}</li>
+                                    <li class="list-group-item text-gray-900">Front Tire : {{ $row->front_tire }}</li>
+                                    <li class="list-group-item text-gray-900">Rear Tire : {{ $row->rear_tire }}</li>
+                                    <li class="list-group-item text-gray-900">Type Model : {{ $row->type_model }}</li>
+                                    <li class="list-group-item text-gray-900">Fuel Capacity : {{ $row->fuel_capacity }}</li>
+                                    <li class="list-group-item text-gray-900">Transmission : {{ $row->transmission }}</li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

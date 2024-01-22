@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Checkout;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
     public function list()
     {
-        $listData = Cart::with(['kustomer', 'product'])->where([
+        $list = Cart::with(['kustomer', 'product'])->where([
             ['user_id', '=', Auth::user()->id],
             ['status', '=', 'onList']
         ])->get();
-
         $qty = 0;
         $amount = 0;
-        foreach ($listData as $data) {
+        foreach ($list as $data) {
             if ($data->quantity >= $data->product->stock_product) {
                 $amount += $data->product->stock_product * $data->product->harga_product;
                 $qty += $data->product->stock_product;
@@ -29,7 +27,11 @@ class CartController extends Controller
             }
         }
 
-        return view('pages.users.pesanan.cart_list', compact('qty', 'listData', 'amount'));
+        return view('pages.users.pesanan.cart_list', [
+            'qty' => $qty,
+            'list' => $list,
+            'amount' => $amount,
+        ]);
     }
 
     public function store(Request $request)
@@ -38,7 +40,7 @@ class CartController extends Controller
             'product_id' => 'required',
         ]);
 
-        $datas = Cart::with('vespa_product')->where('product_id', '=', $request->product_id)->get();
+        $datas = Cart::with('product')->where('product_id', '=', $request->product_id)->get();
 
         foreach ($datas as $data) {
             if ($data->quantity > $data->product->stock_product) {
@@ -56,7 +58,7 @@ class CartController extends Controller
             ['status', '<>', 'paid']
         ])->first();
 
-        $cartDatas = Cart::with('vespa_product')->where([
+        $cartDatas = Cart::with('product')->where([
             ['product_id', '=', $request->product_id],
             ['user_id', '=', Auth::user()->id]
         ])->get();
@@ -97,11 +99,25 @@ class CartController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $datas = [
+            'quantity' => $request->input('quantity'),
+        ];
 
+        if ($datas['quantity'] <= 0 || $request->quantity <= 0) {
+            Cart::findOrFail($id)->delete();
+            Alert::toast('Your order has been deleted to the cart!', 'error')->position('top-end');
+            return redirect()->route('cart.list');
+        } else {
+            Cart::findOrFail($id)->update($datas);
+            Alert::toast('Your order has been updated to the cart!', 'success')->position('top-end');
+            return redirect()->route('cart.list');
+        }
     }
 
     public function destroy(string $id)
     {
-
+        Cart::findOrFail($id)->delete();
+        Alert::toast('Your order has been deleted to the cart!', 'info')->position('top-end');
+        return redirect()->route('cart.list');
     }
 }

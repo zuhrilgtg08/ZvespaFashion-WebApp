@@ -76,7 +76,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="text-center text-lg fs-3">
+                                <div class="text-center text-lg fs-3" style="font-size: 11px;">
                                     <p class="text-gray-600">Already have an account?
                                         <a href="{{ route('login') }}" class="font-bold">Signin</a>
                                     </p>

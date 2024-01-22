@@ -60,7 +60,7 @@
                         <div class="position-relative" style="z-index: 1;">
                             <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
                             <h2 class="mb-4 font-weight-semi-bold">Spring Collection</h2>
-                            <a href="" class="btn btn-outline-primary rounded py-md-2 px-md-3">Shop Now</a>
+                            <a href="{{ route('popular.index') }}" class="btn btn-outline-primary rounded py-md-2 px-md-3">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <div class="position-relative" style="z-index: 1;">
                             <h5 class="text-uppercase text-primary mb-3">Dreaming in Colors</h5>
                             <h2 class="mb-4 font-weight-semi-bold">Winter Collection</h2>
-                            <a href="" class="btn btn-outline-primary rounded py-md-2 px-md-3">Shop Now</a>
+                            <a href="{{ route('popular.index') }}" class="btn btn-outline-primary rounded py-md-2 px-md-3">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                     <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $item->id }}"/>
-                                        <input type="hidden" name="quantity" value="1" />
+                                        <input type="hidden" name="quantity" min="1" value="{{ ($item->stock_product > 0) ? 1 : 0 }}" max="{{ $item->stock_product }}"/>
                                         <button type="submit" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-danger mr-1"></i>
                                             Add To Cart
                                         </button>

@@ -67,7 +67,7 @@ class UsersSeeder extends Seeder
         User::create([
             'name' => 'Moch Fachrizal Zakaria',
             'email' => 'fachrizalzakaria@gmail.com',
-            'password' => bcrypt(''),
+            'password' => bcrypt('karyawanRizal2023'),
             'alamat' => 'Jl Purwodadi 27',
             'job' => 'Designer UI/UX',
             'phone_number' => '0831-9154-4197',

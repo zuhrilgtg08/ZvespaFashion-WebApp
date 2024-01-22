@@ -47,10 +47,17 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="text-center text-lg fs-3">
-                                    <p class="text-gray-600">Don't have an account?
-                                        <a href="{{ route('register') }}" class="font-bold">Signup</a>
-                                    </p>
+                                <div class="row justify-content-center">
+                                    <div class="col-md text-center" style="font-size: 11px;">
+                                        <span class="text-gray-600">Don't have an account?
+                                            <a href="{{ route('register') }}" class="font-bold">Signup</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md text-center" style="font-size: 11px;">
+                                        <span class="text-gray-600">Forgot password?
+                                            <a href="{{ route('reset') }}" class="font-bold">Send Email</a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

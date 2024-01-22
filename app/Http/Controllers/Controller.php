@@ -17,9 +17,9 @@ class Controller extends BaseController
     {
         $this->middleware(function ($request, $next) {
             if (auth()->user()) {
-                $cart = Cart::where('user_id', auth()->user()->id)
-                    ->where('status', '=', 'added')->get();
-                View::share('cart', $cart);
+                $countCart = Cart::where('user_id', auth()->user()->id)
+                    ->where('status', '=', 'onList')->get();
+                View::share('countCart', $countCart);
             } else {
                 $categories = Categories::get();
                 View::share('categories', $categories);

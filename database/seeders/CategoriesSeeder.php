@@ -15,10 +15,10 @@ class CategoriesSeeder extends Seeder
     {
         $datas = [
             ['name_category' => 'Otomotif dan Kendaraan', 'slug' => 'otomotif-dan-kendaraan'],
-            ['name_category' => 'Produktivitas', 'slug' => 'produktivitas'],
+            ['name_category' => 'Alat dan Aksesoris', 'slug' => 'alat-dan-aksesoris'],
             ['name_category' => 'Personalisasi', 'slug' => 'personalisasi'],
-            ['name_category' => 'Komunikasi', 'slug' => 'komunikasi'],
-            ['name_category' => 'Bisnis', 'slug' => 'bisnis'],
+            ['name_category' => 'Styled Design', 'slug' => 'styled-design'],
+            ['name_category' => 'Perlengkapan Mesin', 'slug' => 'perlengkapan-mesin'],
         ];
 
         foreach ($datas as $data) {

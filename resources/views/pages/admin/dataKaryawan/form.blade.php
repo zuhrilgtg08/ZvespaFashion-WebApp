@@ -232,7 +232,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 text-center">
-                            <button type="submit" class="btn btn-primary w-25">Save</button>
+                            <button type="submit" class="btn btn-primary w-25"><i class="fas fa-fw fa-save"></i> Save</button>
                         </div>
                     </form>
                 </div>

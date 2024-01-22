@@ -40,7 +40,6 @@
             padding-right: 0;
         }
         
-   
         input:checked ~ label, 
         label:hover, label:hover ~ label 
         { color: #deb217; } 
@@ -62,11 +61,15 @@
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border-0">
-                        @foreach ($row->photo_product as $key => $img)
-                            <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}">
-                                <img class="img-fluid" src="{{ asset('storage/' . $img) }}" alt="Image" style="min-width: 350px"/>
-                            </div>
-                        @endforeach
+                        @if($row->photo_product)
+                            @foreach ($row->photo_product as $key => $img)
+                                <div class="carousel-item {{ ($key == 0) ? 'active' : '' }}">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $img) }}" alt="Image" style="min-width: 350px"/>
+                                </div>
+                            @endforeach
+                        @else
+                            <img class="img-fluid" src="{{ asset('assets/customer/img/blank-vespa.png') }}" alt="Image" style="min-width: 350px" />
+                        @endif
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -144,28 +147,26 @@
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Additional Specifications</h4>
                         <div class="row">
-                            @if ($row->specifications->count())
-                                @foreach ($row->specifications as $spec)
-                                    <div class="col-md-6">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item px-0">{{ $spec->engine }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->displacement }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->max_power }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->max_torque }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->rear_tire }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->fuel_capacity }}</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item px-0">{{ $spec->colling_system }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->transmission }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->brake_system }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->front_tire }}</li>
-                                            <li class="list-group-item px-0">{{ $spec->type_model }}</li>
-                                        </ul>
-                                    </div>
-                                @endforeach
+                            @if ($row->count())
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0">{{ $row->engine }}</li>
+                                        <li class="list-group-item px-0">{{ $row->displacement }}</li>
+                                        <li class="list-group-item px-0">{{ $row->max_power }}</li>
+                                        <li class="list-group-item px-0">{{ $row->max_torque }}</li>
+                                        <li class="list-group-item px-0">{{ $row->rear_tire }}</li>
+                                        <li class="list-group-item px-0">{{ $row->fuel_capacity }}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0">{{ $row->colling_system }}</li>
+                                        <li class="list-group-item px-0">{{ $row->transmission }}</li>
+                                        <li class="list-group-item px-0">{{ $row->brake_system }}</li>
+                                        <li class="list-group-item px-0">{{ $row->front_tire }}</li>
+                                        <li class="list-group-item px-0">{{ $row->type_model }}</li>
+                                    </ul>
+                                </div>
                             @else
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">

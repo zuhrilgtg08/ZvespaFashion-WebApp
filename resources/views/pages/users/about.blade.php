@@ -13,19 +13,23 @@
                 <h3 class="section-title px-5 mb-5"><span class="px-2">Galeri Produk Perusahaan</span></h3>
                 <div class="row justify-content-center">
                     <div class="owl-carousel about-carousel">
-                        @foreach ($data_galeri as $item)
-                            <div class="about-item">
-                                <div class="col-md-12 col-sm-6">
-                                    <div class="card h-100 border-0 rounded">
-                                        @if ($item->photos)
-                                            <img src="{{ asset('storage/' . $item->photos) }}" alt="img-galeri" class="card-img-top" />
-                                        @else 
-                                            <img src="{{ asset('assets/customer/img/blank-vespa.png') }}" alt="img-galeri" class="card-img-top" />
-                                        @endif
+                        @if($data_galeri->count())
+                            @foreach ($data_galeri as $item)
+                                <div class="about-item">
+                                    <div class="col-md-12 col-sm-6">
+                                        <div class="card h-100 border-0 rounded">
+                                            @if ($item->photos)
+                                                <img src="{{ asset('storage/' . $item->photos) }}" alt="img-galeri" class="card-img-top" />
+                                            @else 
+                                                <img src="{{ asset('assets/customer/img/blank-vespa.png') }}" alt="img-galeri" class="card-img-top" />
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                            <h4 class="text-center my-5">Maaf, Galeri Belum ditambahkan!</h4>
+                        @endif
                     </div>
                 </div>
             </div>

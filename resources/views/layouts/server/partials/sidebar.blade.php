@@ -77,8 +77,6 @@
                                 href="{{ route('admin.manage_karyawan.index') }}">Karyawan</a>
                             <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.testimoni' ? 'active' : '' }}"
                                 href="{{ route('admin.testimoni.index') }}">Testimonial</a>
-                            <a class="collapse-item {{ isset($sbActive) && $sbActive === 'data.spesifikasi' ? 'active' : '' }}"
-                                href="{{ route('admin.spesifikasi.index') }}">Spesifikasi</a>
                         </div>
                     </div>
                 </li>

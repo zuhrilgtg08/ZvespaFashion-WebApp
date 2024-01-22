@@ -22,7 +22,6 @@ use App\Http\Controllers\Data\CategoriesController;
 use App\Http\Controllers\FrontPortofolioController;
 use App\Http\Controllers\Data\TestimonialController;
 // ONly About Routes 
-use App\Http\Controllers\Data\SpecificationController;
 use App\Http\Controllers\Data\ManageKaryawanController;
 use App\Http\Controllers\Data\DashboardKaryawanController;
 
@@ -48,7 +47,6 @@ Route::name('admin.')->prefix('manage_dashboard')->middleware('admin')->group(fu
     Route::resource('manage_karyawan', ManageKaryawanController::class);
     Route::resource('kategori', CategoriesController::class);
     Route::resource('vespa', VespaController::class);
-    Route::resource('spesifikasi', SpecificationController::class);
     Route::get('/setting/account/{users:email}', [DashboardController::class, 'setting'])->name('setting');
     Route::put('/setting/account/update/{id}', [DashboardController::class, 'updateData'])->name('setting.update');
     Route::put('/setting/account/updatePassword/{id}', [DashboardController::class, 'updatePassword'])->name('update.password');
@@ -77,6 +75,8 @@ Route::get('/karyawan/manage_data/portofolio/checkSlug', [PortfolioController::c
 // Authenticate Routes 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::get('/reset', [LoginController::class, 'reset'])->name('reset')->middleware('guest');
+Route::post('/reset/createnewpassword', [LoginController::class, 'resetPassword'])->name('reset.password')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
@@ -122,3 +122,5 @@ Route::name('cart.')->middleware(['auth'])->group(function () {
     Route::put('/edit/cart/update/{id}', [CartController::class, 'update'])->name('update');
     Route::delete('/product/cart/destroy/{id}', [CartController::class, 'destroy'])->name('destroy');
 });
+
+// 

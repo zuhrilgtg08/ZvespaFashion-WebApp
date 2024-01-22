@@ -43,10 +43,7 @@
                     @if (request('category'))
                         <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
-
-                    @if (request('specifications'))
-                        <input type="hidden" name="specifications" value="{{ request('specifications') }}">
-                    @endif
+                    
                     <div class="input-group mb-3">
                         <input type="text" name="cari" class="form-control" placeholder="Cari Produk Lainnya disini" 
                             value="{{ request('cari') }}"/>
@@ -59,9 +56,11 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
+                <a href="{{ route('cart.list') }}" class="btn border">
                     <i class="fas fa-shopping-cart text-danger"></i>
-                    <span class="badge">0</span>
+                    @if (!empty($countCart))
+                        <span class="badge">{{ $countCart->count() }}</span>
+                    @endif
                 </a>
             </div>
         </div>

@@ -76,6 +76,17 @@ class VespaController extends Controller
             'photo_product' => 'nullable|array',
             'thumbnail' => 'nullable|image|file|max:2048|mimes:jpeg,jpg,png,svg',
             'detail_product' => 'required|string',
+            "engine" => "required|string|max:150",
+            "displacement" => "required|string|max:150",
+            "max_power" => "required|string|max:150",
+            "max_torque" => "required|string|max:150",
+            "colling_system" => "required|string|max:150",
+            "transmission" => "required|string|max:150",
+            "brake_system" => "required|string|max:150",
+            "front_tire" => "required|string|max:150",
+            "rear_tire" => "required|string|max:150",
+            "type_model" => "required|string|max:150",
+            "fuel_capacity" => "required|string|max:150",
         ]);
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->detail_product), 50);
@@ -142,6 +153,17 @@ class VespaController extends Controller
             'photo_product' => 'nullable|array',
             'thumbnail' => 'nullable|image|file|max:2048|mimes:jpeg,jpg,png,svg',
             'detail_product' => 'required|string',
+            "engine" => "required|string|max:150",
+            "displacement" => "required|string|max:150",
+            "max_power" => "required|string|max:150",
+            "max_torque" => "required|string|max:150",
+            "colling_system" => "required|string|max:150",
+            "transmission" => "required|string|max:150",
+            "brake_system" => "required|string|max:150",
+            "front_tire" => "required|string|max:150",
+            "rear_tire" => "required|string|max:150",
+            "type_model" => "required|string|max:150",
+            "fuel_capacity" => "required|string|max:150",
         ];
 
         $validateData = $request->validate($datas);

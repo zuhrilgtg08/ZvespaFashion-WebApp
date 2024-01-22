@@ -58,24 +58,28 @@
                     <h3 class="section-title px-5 mb-3"><span class="px-2">More Articel</span></h3>
                     <div class="col-lg-12 col-md-12">
                         <div class="row">
-                            <div class="owl-carousel blog-carousel">
-                                @foreach ($more_blog as $key => $item)
-                                    <div class="blog-item">
-                                        <div class="col-md">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    @if ($item->thumbnail)
-                                                        <img src="{{ asset('storage/' . $item->thumbnail) }}" class="img-fluid w-100 rounded-lg" alt="blog-img" />
-                                                    @else
-                                                        <img src="https://placehold.co/600x400" alt="img-thumbnail" />
-                                                    @endif
-                                                    <a href="{{ url('/articelCompany', $item->uuid) }}" class=" d-inline-block mt-3">{{ $item->title }}</a>
+                            @if(!$more_blog->isEmpty())
+                                <div class="owl-carousel blog-carousel">
+                                    @foreach ($more_blog as $key => $item)
+                                        <div class="blog-item">
+                                            <div class="col-md">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        @if ($item->thumbnail)
+                                                            <img src="{{ asset('storage/' . $item->thumbnail) }}" class="img-fluid w-100 rounded-lg" alt="blog-img" />
+                                                        @else
+                                                            <img src="https://placehold.co/600x400" alt="img-thumbnail" />
+                                                        @endif
+                                                        <a href="{{ url('/articelCompany', $item->uuid) }}" class=" d-inline-block mt-3">{{ $item->title }}</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <h4 class="text-center my-5">Maaf, Artikel Masih Kosong !</h4>
+                            @endif
                         </div>
                     </div>
                 </div>
