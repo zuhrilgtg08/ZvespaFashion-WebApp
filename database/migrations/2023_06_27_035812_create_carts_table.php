@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('checkout_id');
             $table->integer('quantity');
-            $table->string('status')->default('added');
+            $table->string('status')->default('onList'); //onList, ordered 
+            $table->string('payments')->nullable(); //paid
             $table->timestamps();
         });
     }

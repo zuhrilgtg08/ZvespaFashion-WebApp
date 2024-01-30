@@ -5,7 +5,9 @@ use App\Models\Web_Builder\Profile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Data\EventController;
 use App\Http\Controllers\Data\VespaController;
@@ -15,15 +17,19 @@ use App\Http\Controllers\Data\ArticelController;
 use App\Http\Controllers\Data\ProfileController;
 use App\Http\Controllers\FrontArticelController;
 use App\Http\Controllers\FrontPopularController;
+use App\Http\Controllers\RiwayatOrderController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Data\DashboardController;
+// ONly About Routes 
 use App\Http\Controllers\Data\PortfolioController;
 use App\Http\Controllers\Data\CategoriesController;
 use App\Http\Controllers\FrontPortofolioController;
+use App\Http\Controllers\PaymentCallbackController;
 use App\Http\Controllers\Data\TestimonialController;
-// ONly About Routes 
 use App\Http\Controllers\Data\ManageKaryawanController;
 use App\Http\Controllers\Data\DashboardKaryawanController;
+use App\Models\Checkout;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +119,6 @@ Route::get('/data/edit/{users:email}', [CustomerController::class, 'edit'])->mid
 Route::put('/data/update/{users:id}', [CustomerController::class, 'update'])->middleware('auth')->name('update.data');
 Route::put('/data/updatePassword/{id}', [CustomerController::class, 'updatePasswordAccount'])->middleware('auth')->name('update.password.account');
 Route::get('/data/kota/{id}', [CustomerController::class, 'pilihKota'])->middleware('auth');
-Route::get('/history/list', [CustomerController::class, 'historyOrder'])->middleware('auth')->name('history.index');
 
 // Cart Routes Customer
 Route::name('cart.')->middleware(['auth'])->group(function () {
@@ -123,4 +128,28 @@ Route::name('cart.')->middleware(['auth'])->group(function () {
     Route::delete('/product/cart/destroy/{id}', [CartController::class, 'destroy'])->name('destroy');
 });
 
-// 
+// Shipping Cart
+Route::name('shipping.')->middleware(['auth'])->group(function(){
+    Route::get('/data/city/{provinces:id}', [ShippingController::class, 'getCity'])->name('city');
+    Route::get('/destination={city_destination}&weight={weight}&courier={courier}', [ShippingController::class, 'cekOngkir'])->name('check.ongkir');
+    Route::get('/shipping/create/data', [ShippingController::class, 'create'])->name('create');
+    Route::post('/shipping/store/data', [ShippingController::class, 'store'])->name('store');
+});
+
+// Payments & Checkouts
+Route::get('/checkout/pay_order', [CheckoutController::class, 'payment'])->name('checkout.pay')->middleware('auth');
+Route::name('checkout.')->middleware(['auth'])->group(function() {
+    Route::post('/payment/confirm', [CheckoutController::class, 'konfirmasiPayment'])->name('confirm');
+});
+
+// Payment when redirect & History Order
+Route::get('/success/payment', [RiwayatOrderController::class, 'successNotif'])->middleware('auth');
+Route::get('/pending/payment', [RiwayatOrderController::class, 'pendingNotif'])->middleware('auth');
+Route::get('/error/payment', [RiwayatOrderController::class, 'errorNotif'])->middleware('auth');
+
+// Route pay Midtrans payment
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
+
+// Route History
+Route::get('/history/list', [RiwayatOrderController::class, 'historyOrder'])->middleware('auth')->name('history.index');
+Route::get('/history/detail/{id}', [RiwayatOrderController::class, 'detailOrder'])->middleware('auth')->name('history.detail');

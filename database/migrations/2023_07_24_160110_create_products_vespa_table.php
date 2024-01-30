@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('photo_product')->nullable();
             $table->string('thumbnail')->nullable();
             $table->integer('harga_product');
+            $table->float('weight_product')->default(0);
             $table->string('excerpt');
             $table->longText('detail_product');
             $table->string('engine');

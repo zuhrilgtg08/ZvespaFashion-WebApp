@@ -12,6 +12,7 @@ class Checkout extends Model
 {
     use HasFactory, Uuid;
     protected $guarded = ['id'];
+    protected $with = ['province', 'cities'];
 
     public function cart()
     {

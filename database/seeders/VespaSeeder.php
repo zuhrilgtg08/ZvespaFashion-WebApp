@@ -36,6 +36,7 @@ class VespaSeeder extends Seeder
                 'rear_tire' => 'Tubeless 120/70-10',
                 'type_model' => '3 valves',
                 'fuel_capacity' => '7.5 liter',
+                'weight_product' => 112
             ],
             [
                 'name_product' => 'Vespa GTS 150',
@@ -59,6 +60,7 @@ class VespaSeeder extends Seeder
                 'rear_tire' => 'Tubeless 120/70-10',
                 'type_model' => '3 valves',
                 'fuel_capacity' => '7.5 liter',
+                'weight_product' => 110
             ],
             [
                 'name_product' => 'Vespa Primavera',
@@ -82,6 +84,31 @@ class VespaSeeder extends Seeder
                 'rear_tire' => 'Tubeless 120/70-10',
                 'type_model' => '3 valves',
                 'fuel_capacity' => '7.5 liter',
+                'weight_product' => 100
+            ],
+            [
+                'name_product' => 'Barang 1',
+                'stock_product' => 10,
+                'nomor_seri' => 'B56144',
+                'launch_year' => 2001,
+                'category_id' => 1,
+                'photo_product' => null,
+                'thumbnail' => null,
+                'harga_product' => 5000,
+                'excerpt' => 'Arduino adalah mikrocontroller telah menjadi sebuah revolusi...',
+                'detail_product' => 'Arduino telah menjadi sebuah revolusi dalam inovasi sejak 1980 dan menjadi ikon klasik sepanjang masa.Dengan karakternya yang muda, lincah, inovatif, aman dan ramah lingkungan.',
+                'engine' => '-',
+                'displacement' => '-',
+                'max_power' => '-',
+                'max_torque' => '-',
+                'colling_system' => '-',
+                'transmission' => '-',
+                'brake_system' => '-',
+                'front_tire' => '-',
+                'rear_tire' => '-',
+                'type_model' => '-',
+                'fuel_capacity' => '-',
+                'weight_product' => 30
             ],
         ];
 

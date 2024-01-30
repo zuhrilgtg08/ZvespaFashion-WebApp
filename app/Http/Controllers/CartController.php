@@ -55,7 +55,7 @@ class CartController extends Controller
         $cartCheck = Cart::where([
             ['product_id', '=', $request->product_id],
             ['user_id', '=', Auth::user()->id],
-            ['status', '<>', 'paid']
+            ['status', '<>', 'complete']
         ])->first();
 
         $cartDatas = Cart::with('product')->where([

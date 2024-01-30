@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Cities;
+use App\Models\Checkout;
 use App\Models\Provinces;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -103,10 +104,5 @@ class CustomerController extends Controller
                 return redirect()->back();
             }
         }
-    }
-
-    public function historyOrder()
-    {
-        return view('pages.users.data_account.listHistory');
     }
 }

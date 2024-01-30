@@ -86,7 +86,7 @@
             </div>
             <div class="col-lg-4 col-md-4 my-5">
                 <div class="card shadow border-0">
-                    <div class="card-header py-3 bg-danger">
+                    <div class="card-header py-3 bg-primary">
                         <h5 class="mb-0 text-white text-center">Detail Products Amount</h5>
                     </div>
                     <div class="card-body">
@@ -107,9 +107,9 @@
                         </ul>
             
                         <div class="mx-auto text-center {{ $list->isEmpty() ? 'd-none' : '' }}">
-                            {{-- <a href="{{ route('shipping.create') }}" class="btn btn-solid-reg btn-lg btn-block">
+                            <a href="{{ route('shipping.create') }}" class="btn btn-primary btn-lg btn-block">
                                 Go to add shipping
-                            </a> --}}
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ class Cart extends Model
     use HasFactory, Uuid;
     protected $guarded = ['id'];
     protected $with = ['product', 'kustomer'];
+    // protected $fillable = ['payments'];
 
     public function product()
     {

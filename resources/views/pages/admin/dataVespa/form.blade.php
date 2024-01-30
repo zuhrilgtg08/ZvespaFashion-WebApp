@@ -132,6 +132,24 @@
                         </div>
                         <div class="col-xl-12 col-md-12">
                             <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="weight-product" class="form-label">Berat Produk</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon"><i class="fas fa-weight-hanging"></i></span>
+                                        </div>
+                                        <input type="number" class="form-control @error('weight_product') is-invalid @enderror" required
+                                            placeholder="Berat Produk" name="weight_product" id="weight-product"
+                                            value="{{ old('weight_product', $row->weight_product ?? '') }}" />
+                                        @error('weight_product')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-md-12">
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="input-photo-product" class="form-label">Upload File Photo</label>
                                     @if (isset($row->id) && $row->photo_product)

@@ -87,6 +87,7 @@ class VespaController extends Controller
             "rear_tire" => "required|string|max:150",
             "type_model" => "required|string|max:150",
             "fuel_capacity" => "required|string|max:150",
+            "weight_product" => "required|numeric|integer|min:1",
         ]);
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->detail_product), 50);
@@ -164,6 +165,7 @@ class VespaController extends Controller
             "rear_tire" => "required|string|max:150",
             "type_model" => "required|string|max:150",
             "fuel_capacity" => "required|string|max:150",
+            "weight_product" => "required|numeric|integer|min:1",
         ];
 
         $validateData = $request->validate($datas);

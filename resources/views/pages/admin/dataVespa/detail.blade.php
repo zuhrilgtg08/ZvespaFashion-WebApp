@@ -56,6 +56,7 @@
                             <h6 class="font-weight-bold card-text text-gray-900">Dibuat Tahun : {{ $row->launch_year }}</h6>
                             <h6 class="font-weight-bold card-text text-gray-900">Kategori : <span class="text-primary">{{ $row->category->name_category }}</span></h6>
                             <h6 class="font-weight-bold card-text text-gray-900">Harga Produk : <span class="text-primary">@currency($row->harga_product)</span></h6>
+                            <h6 class="font-weight-bold card-text text-gray-900">Berat Produk : <span class="text-danger">{{ $row->weight_product / 1000 }} Kg</span></h6>
                         </div>
                     </div>
                 </div>
