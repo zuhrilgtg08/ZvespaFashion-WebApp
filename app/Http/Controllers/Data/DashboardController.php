@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Data;
 use App\Models\User;
 use App\Models\Vespa;
+use App\Models\Checkout;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,10 +22,29 @@ class DashboardController extends Controller
             'kategori' => Categories::latest()->count(),
             'model_vespa' => Vespa::latest()->count(),
             'total_stock_vespa' => Vespa::sum('stock_product'),
+            'order' => Checkout::select(['harga_ongkir', 'total_amount'])->get(),
+            'checkout' => Checkout::where('transaction_status', '=', 'settlement')->count()
         ];
+
+        $dataOrder = $data['order']->toArray();
+
+        $datas = [
+            'order_0' => $dataOrder[0]['harga_ongkir'] + $dataOrder[0]['total_amount'] + 5000,
+            'order_1' => $dataOrder[1]['harga_ongkir'] + $dataOrder[1]['total_amount'] + 5000,
+            'order_2' => $dataOrder[2]['harga_ongkir'] + $dataOrder[2]['total_amount'] + 5000,
+            'order_3' => $dataOrder[3]['harga_ongkir'] + $dataOrder[3]['total_amount'] + 5000,
+        ];
+
+        $total = 0;
+
+        foreach($data['order'] as $dt) {
+            $total += $dt->harga_ongkir + $dt->total_amount + 5000;
+        }
 
         return view('pages.admin.index', [
             'data' => $data,
+            'datas' => $datas,
+            'total' => $total,
         ]);
     }
 

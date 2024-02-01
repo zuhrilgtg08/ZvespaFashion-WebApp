@@ -95,7 +95,7 @@
                                     <div class="text-xs font-weight-bold text-gray-900 text-uppercase mb-1">
                                         Total Penjualan
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 0</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@currency($total)</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-dollar-sign fa-2x text-warning"></i>
@@ -125,7 +125,7 @@
                                     <div class="text-xs font-weight-bold text-gray-900 text-uppercase mb-1">
                                         Jumlah Pesanan
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">0 Order</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $data['checkout'] }} Order</div>
                                 </div>
                                 <div class="col-auto">
                                    <i class="fas fa-shopping-bag fa-2x text-gray-900"></i>
@@ -174,6 +174,8 @@
             return s.join(dec);
         }
 
+        let result = {{ Js::from($datas) }};
+
         // Bar Chart Example
         var ctx = document.getElementById("myBarChart");
         var myBarChart = new Chart(ctx, {
@@ -185,7 +187,7 @@
                 backgroundColor: "#4e73df",
                 hoverBackgroundColor: "#2e59d9",
                 borderColor: "#4e73df",
-                    data: [],
+                    data: [result['order_0'], result['order_1'], result['order_2'], result['order_3']],
                 }],
             },
             options: {
@@ -215,7 +217,7 @@
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 15000,
+                        max: result['order_3'],
                         maxTicksLimit: 5,
                         padding: 10,
                         // Include a dollar sign in the ticks

@@ -100,7 +100,7 @@ class CartController extends Controller
     public function update(Request $request, string $id)
     {
         $datas = [
-            'quantity' => $request->input('quantity'),
+            'quantity' => $request->quantity,
         ];
 
         if ($datas['quantity'] <= 0 || $request->quantity <= 0) {

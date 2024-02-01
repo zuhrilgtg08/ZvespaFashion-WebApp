@@ -150,6 +150,7 @@ Route::get('/error/payment', [RiwayatOrderController::class, 'errorNotif'])->mid
 // Route pay Midtrans payment
 Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 
-// Route History
+// Route History & print
 Route::get('/history/list', [RiwayatOrderController::class, 'historyOrder'])->middleware('auth')->name('history.index');
 Route::get('/history/detail/{id}', [RiwayatOrderController::class, 'detailOrder'])->middleware('auth')->name('history.detail');
+Route::get('/history/print/{id}', [RiwayatOrderController::class, 'cetakStruk'])->middleware('auth');
